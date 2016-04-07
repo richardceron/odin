@@ -9,12 +9,16 @@ import java.io.Serializable;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 import java.util.Date;
+import java.util.LinkedList;
+import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
@@ -46,9 +50,13 @@ public class Usuario implements Serializable {
     
     @OneToOne
     private Imagen foto;
+    
+    @OneToMany(mappedBy="usuario", cascade=CascadeType.ALL)
+    private List<Solicitud> solicitudes;
 
     public Usuario() {
         activo = true;
+        solicitudes = new LinkedList<>();
     }
 
     public Long getId() {
@@ -217,6 +225,20 @@ public class Usuario implements Serializable {
      */
     public void setFoto(Imagen foto) {
         this.foto = foto;
+    }    
+
+    /**
+     * @return the solicitudes
+     */
+    public List<Solicitud> getSolicitudes() {
+        return solicitudes;
+    }
+
+    /**
+     * @param solicitudes the solicitudes to set
+     */
+    public void setSolicitudes(List<Solicitud> solicitudes) {
+        this.solicitudes = solicitudes;
     }
 
 }

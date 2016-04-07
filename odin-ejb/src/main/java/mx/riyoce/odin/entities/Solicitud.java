@@ -43,8 +43,18 @@ public class Solicitud implements Serializable {
     @Temporal(javax.persistence.TemporalType.TIMESTAMP)
     private Date fecha;
     
+    
+    @ManyToOne
+    private Agencia agencia;
+    
+    @ManyToOne
+    private Usuario usuario;
+    
     @ManyToOne
     private TipoSolicitud tipo;
+    
+    @ManyToOne
+    private StatusSolicitud status;
     
     @OneToMany(mappedBy="solicitud", cascade=CascadeType.ALL)
     private List<Correo> correos;
@@ -194,6 +204,48 @@ public class Solicitud implements Serializable {
      */
     public void setCorreos(List<Correo> correos) {
         this.correos = correos;
+    }
+
+    /**
+     * @return the usuario
+     */
+    public Usuario getUsuario() {
+        return usuario;
+    }
+
+    /**
+     * @param usuario the usuario to set
+     */
+    public void setUsuario(Usuario usuario) {
+        this.usuario = usuario;
+    }
+
+    /**
+     * @return the status
+     */
+    public StatusSolicitud getStatus() {
+        return status;
+    }
+
+    /**
+     * @param status the status to set
+     */
+    public void setStatus(StatusSolicitud status) {
+        this.status = status;
+    }
+
+    /**
+     * @return the agencia
+     */
+    public Agencia getAgencia() {
+        return agencia;
+    }
+
+    /**
+     * @param agencia the agencia to set
+     */
+    public void setAgencia(Agencia agencia) {
+        this.agencia = agencia;
     }
     
 }
