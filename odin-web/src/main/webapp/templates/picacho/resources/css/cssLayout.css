@@ -1,0 +1,307 @@
+#full-top{
+    width: 100%;
+    height: 20px;
+    padding-top: 5px;
+    padding-bottom: 5px;
+    background-color: rgb(236, 236, 236);
+    clear: both;
+    border-bottom: rgb(198, 198, 198) solid 1px;
+}
+
+#top{
+    width: 1200px;
+    height: 20px;
+    margin: 0 auto;
+}
+
+.top-link{
+    height: 20px;
+    line-height: 20px;
+    float: left;
+    display: block;
+    font-size: 12px;
+    color: #000;
+    margin-right: 10px;
+}
+
+#top-redes{
+    display: none!important;
+    width: 33%;
+    box-sizing: border-box;
+    padding-right: 10px!important;
+}
+
+.top-link img{
+    width: 20px;
+    height: 20px;
+    vertical-align: middle;
+    margin-right: 5px;
+}
+
+#full-menu{
+    width: 100%;
+    height: 40px;
+    background-image: url("../images/bg-menu.jpg");
+    padding-top: 10px;
+    padding-bottom: 10px;
+}
+
+#wrapper-menu{
+    width: 1200px;
+    height: 40px;
+    margin: 0 auto;
+}
+
+#logo{
+    display: inline-block;
+    float: left;
+}
+
+#responsive-menu-bar{
+    display: none;
+    width: 100%;
+    height: 56px;
+    line-height: 56px;
+    background-image: url("../images/barra-main.png");
+    background-size: cover;
+    box-sizing: border-box;
+    padding-left: 10px;
+    padding-right: 30px;
+    cursor: pointer;
+}
+
+#responsive-menu-bar img{
+    height: 36px;
+    width: auto;
+    margin-top: 10px;
+    float: left;
+}
+
+#responsive-menu-bar span{
+    color: #FFF;
+    font-size: 20px;
+    float: right;
+    font-weight: bold;
+}
+
+#responsive-menu{
+    display: none;
+    width: 100%;
+    height: auto;
+    clear: both;
+    background-color: rgb(54, 58, 64);
+}
+
+#responsive-menu a{  
+    display: block;
+    width: 100%;
+    height: 30px;
+    line-height: 30px;
+    clear: both;
+    color: #FFF;
+    text-align: center;
+    border-bottom: #FFF solid 1px;
+}
+
+#menu{
+    height: 40px;
+    width: 800px;
+    float: right;    
+}
+
+#menu ul, #menu li{
+    margin: 0px;
+    padding: 0px;
+    border: 0px;
+    display: block;    
+}
+
+#menu ul{
+    position: relative;
+    float: left;
+    height: 40px;
+    line-height: 40px;
+    padding-left: 10px;
+    padding-right: 10px;    
+}
+
+#menu ul li{
+    display: none;
+    position: absolute;
+    width: 250px;
+    height: auto;    
+    padding-bottom: 5px;
+    background-color: rgba(255, 255, 255, 0.8);
+    z-index: 50;
+    top: 30px;
+    left: -10px;
+}
+
+#menu ul li a{
+	display: block;
+	width: 100%;
+	box-sizing: border-box;	
+	padding-left: 10px;
+	border-bottom: #000 solid 1px;
+	color: #636363!important;
+}
+
+#menu ul li a:hover{
+	color: #1e376d!important;
+}
+
+#menu ul span, #menu ul a{
+    color: #636363;
+}
+
+#menu ul:hover span, #menu ul:hover a{
+    color: #1e376d;
+}
+
+#menu ul:hover li{
+    display: block;
+}
+
+#content{
+    width: 1180px;
+    height: auto;
+    padding: 10px;
+    margin: 0 auto;
+}
+
+#content-marcas{
+    width: 1200px;
+    height: 120px;
+    margin: 0 auto;
+}
+
+#content-marcas a{
+    display: block;
+    width: 200px;
+    height: 120px;
+    float: left;
+}
+
+#full-banners{
+    clear: both;
+    width: 100%;
+    background-color: #0069aa;
+    height: 104px;
+    padding-top: 10px;
+    padding-bottom: 10px;
+}
+
+#banners{
+    width: 1200px;
+    height: 104px;
+    margin: 0 auto;
+}
+
+#banners a{
+    display: inline-block;
+    float: left;
+}
+
+#full-bottom{
+    width: 100%;
+    height: 332px;
+    padding-top: 20px;
+    background-image: url("../images/bg-footer.jpg");
+    background-size: cover;
+    clear: both;
+}
+
+#bottom{
+    width: 1200px;
+    height: 250px;
+    margin: 0 auto;
+}
+
+.bottom-shortcut{
+    width: 180px;
+    height: auto;
+    padding: 10px;
+    float: left;
+}
+
+.bottom-shortcut span{    
+    width: 100%;    
+    display: block;
+    font-weight: bold;
+    font-size: 16px;
+   
+}
+
+.bottom-shortcut-title-line{
+    width: 100%;
+    height: 1px;
+    background-color: #0069aa;
+    visibility: hidden;
+}
+
+.bottom-shortcut:hover .bottom-shortcut-title-line{    
+    visibility: visible;
+}
+
+.bottom-shortcut a{
+    color: #636363;
+    display: block;
+}
+
+#content-bottom-redes{
+    float: right;
+    display: inline-block;
+}
+
+#bottom-direccion{
+    width: 100%;
+    height: 30px;
+    text-align: center;
+    line-height: 30px;
+    background-color: rgb(227, 226, 221);
+}
+
+.break{
+    width: 100%;
+    height: 10px;
+    clear: both;
+}
+
+#quienes-somos-info, #quienes-somos-forma{
+	float: left;
+	padding: 10px;
+	height: auto;
+	box-sizing: border-box;
+}
+
+#quienes-somos-info{
+	width: 70%;	
+}
+
+#quienes-somos-forma{
+	width: 30%;	
+}
+
+
+
+.sepOrange {
+	width:815px;
+	height:2px;
+	background-color:#0069aa;
+	margin:7px 0px 8px 0px;
+
+}
+
+
+
+li.adentro {
+	list-style-type:circle;	
+	margin-left:35px;
+}
+
+.ttex {
+	margin-left:18px;
+	
+}
+
+

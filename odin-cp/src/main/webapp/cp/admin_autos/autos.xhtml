@@ -1,0 +1,181 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE composition PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+                template="./../cpTemplate.xhtml"
+                xmlns:h="http://xmlns.jcp.org/jsf/html"
+                xmlns:p="http://primefaces.org/ui"
+                xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <ui:define name="content">
+        <div class="col-lg-12">
+            <h1 class="page-header">
+                Autos
+            </h1>
+        </div>
+
+        <div class="col-lg-12">
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    <h:outputText value="Crear Auto" rendered="#{autosController.editAuto eq false}"/>
+                    <h:outputText value="Editar Auto" rendered="#{autosController.editAuto eq true}"/>
+                </div>
+                <div class="panel-body">
+                    <div class="row">
+                        <div class="col-lg-6">
+                            <h:form role="form" prependId="false" id="formaMarca">
+                                <p:growl id="messages"/>
+
+                                <div class="form-group">
+                                    <label>
+                                        Marca
+                                    </label>
+                                    <h:selectOneMenu value="#{autosController.marcaForFilter}" converter="MarcaConverter"
+                                                     styleClass="form-control">
+                                        <p:ajax event="change" listener="#{autosController.filterModelosByMarca}" update="selectorModelo"/>
+                                        <f:selectItem itemValue="#{null}" itemLabel="Selecciona una marca"/>
+                                        <f:selectItems value="#{adminController.marcas}" var="mar" itemLabel="#{mar.nombre}" itemValue="#{mar}" />
+                                    </h:selectOneMenu>
+                                </div>
+
+                                <div class="form-group">
+                                    <label>
+                                        Modelo
+                                    </label>
+                                    <h:panelGroup id="selectorModelo">
+                                        <h:selectOneMenu value="#{autosController.auto.modelo}" converter="ModeloConverter"
+                                                         required="true" requiredMessage="Modelo requerido"
+                                                         styleClass="form-control">                                            
+                                            <f:selectItem itemValue="#{null}" itemLabel="Selecciona un modelo"/>
+                                            <f:selectItems value="#{autosController.modelos}" var="m" itemLabel="#{m.nombre}" itemValue="#{m}" />
+                                        </h:selectOneMenu>
+                                    </h:panelGroup>
+                                </div>
+
+                                <div class="form-group">
+                                    <label>
+                                        Nombre *
+                                    </label>
+                                    <h:inputText styleClass="form-control" required="true" requiredMessage="Nombre Requerido"
+                                                 value="#{autosController.auto.nombre}"/>
+                                </div>
+
+                                <div class="form-group">
+                                    <label>
+                                        Precio *
+                                    </label>
+                                </div>
+
+                                <div class="form-group input-group">                                   
+                                    <span class="input-group-addon">$</span>                                            
+                                    <h:inputText styleClass="form-control" required="true" requiredMessage="Precio Requerido"
+                                                 value="#{autosController.auto.precio}"
+                                                 validatorMessage="Precio Invalido">
+                                        <f:validator validatorId="PrecioValidator" />
+                                    </h:inputText>
+                                    <span class="input-group-addon">.00</span>
+                                </div>
+
+                                <h3>
+                                    Specs
+                                </h3>
+
+                                <h:panelGroup id="panelSpecs">
+                                    <div class="form-group">
+                                        <label>
+                                            Nombre
+                                        </label>
+                                        <h:inputText styleClass="form-control notIncluded"
+                                                     value="#{autosController.spec.nombre}"/>
+                                    </div>
+
+                                    <div class="form-group">
+                                        <label>
+                                            Descripción
+                                        </label>
+                                        <h:inputTextarea styleClass="form-control notIncluded"
+                                                         value="#{autosController.spec.description}"/>
+                                    </div>
+
+                                    <div class="form-group">
+                                        <p:dataTable value="#{autosController.auto.specs}" var="s">
+                                            <p:column headerText="Nombre">
+                                                #{s.nombre}
+                                            </p:column>
+                                            <p:column headerText="Eliminar" style="text-align: center;">
+                                                <p:commandLink action="#{autosController.removeSpecFromAuto(s)}"
+                                                               value="X" process="@this" update="panelSpecs"/>
+                                            </p:column>
+                                        </p:dataTable>
+                                    </div>
+
+                                    <div class="form-group">
+                                        <p:commandButton action="#{autosController.addSpecToAuto}" value="Agregar"
+                                                         styleClass="btn btn-success btn-sm"
+                                                         process="panelSpecs"
+                                                         update="panelSpecs, messages"/>
+                                    </div>                                    
+                                </h:panelGroup>
+
+
+                                <p:commandButton rendered="#{autosController.editAuto eq false}"
+                                                 action="#{autosController.crearAuto}" value="Crear"
+                                                 styleClass="btn btn-primary"
+                                                 update="formaMarca, formListadoMarcas"/>
+
+                                <p:commandButton rendered="#{autosController.editAuto eq true}"
+                                                 action="#{autosController.actualizarAuto}" value="Actualizar"
+                                                 styleClass="btn btn-primary"
+                                                 update="formaMarca, formListadoMarcas"/>
+
+                                <p:commandButton action="#{autosController.cancelarEdicionAuto}" value="Cancelar"
+                                                 styleClass="btn btn-info"
+                                                 update="formaMarca, formListadoMarcas"/>
+                            </h:form>
+                        </div>
+
+                        <div class="col-lg-6">
+                            <h:form role="form" prependId="false" id="formListadoMarcas">
+                                <div class="form-group">
+                                    <label>
+                                        Marca
+                                    </label>
+                                    <h:selectOneMenu value="#{autosController.marcaForFilter}" converter="MarcaConverter"
+                                                     styleClass="form-control">
+                                        <p:ajax event="change" listener="#{autosController.filterModelosByMarca}" update="selectorModeloListado"/>
+                                        <f:selectItem itemValue="#{null}" itemLabel="Selecciona una marca"/>
+                                        <f:selectItems value="#{adminController.marcas}" var="mar" itemLabel="#{mar.nombre}" itemValue="#{mar}" />
+                                    </h:selectOneMenu>
+                                </div>
+
+                                <div class="form-group">
+                                    <label>
+                                        Modelo
+                                    </label>
+                                    <h:panelGroup id="selectorModeloListado">
+                                        <h:selectOneMenu value="#{autosController.modeloForFilter}" converter="ModeloConverter"
+                                                         styleClass="form-control">  
+                                            <p:ajax event="change" listener="#{autosController.filterAutisByModelo}" update="panelTablaAutos"/>
+                                            <f:selectItem itemValue="#{null}" itemLabel="Selecciona un modelo"/>
+                                            <f:selectItems value="#{autosController.modelos}" var="m" itemLabel="#{m.nombre}" itemValue="#{m}" />
+                                        </h:selectOneMenu>
+                                    </h:panelGroup>
+                                </div>
+                                <h:panelGroup id="panelTablaAutos">
+                                    <p:dataTable value="#{autosController.autos}" var="a"
+                                                 rowKey="#{a.id}"
+                                                 selectionMode="single" selection="#{autosController.auto}">
+                                        <p:ajax event="rowSelect" listener="#{autosController.setEditAuto(true)}" update="formaMarca" />
+                                        <p:column headerText="Nombre" sortBy="#{a.nombre}" filterMatchMode="contains" filterBy="#{a.nombre}">
+                                            #{a.nombre}
+                                        </p:column>
+                                    </p:dataTable>
+                                </h:panelGroup>
+                            </h:form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </ui:define>
+
+</ui:composition>

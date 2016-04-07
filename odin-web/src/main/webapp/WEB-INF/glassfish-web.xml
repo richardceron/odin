@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE glassfish-web-app PUBLIC "-//GlassFish.org//DTD GlassFish Application Server 3.1 Servlet 3.0//EN" "http://glassfish.org/dtds/glassfish-web-app_3_0-1.dtd">
+<glassfish-web-app error-url="">
+    
+    <class-loader delegate="true"/>
+    
+    <jsp-config>
+        <property name="keepgenerated" value="true">
+            <description>Keep a copy of the generated servlet class' java code.</description>
+        </property>
+    </jsp-config>
+  
+    <parameter-encoding default-charset="UTF-8"/>    
+    
+    <context-root>/w</context-root>
+        
+    <security-role-mapping>
+        <role-name>admin</role-name>
+        <group-name>admin</group-name>
+    </security-role-mapping>
+    <security-role-mapping>
+        <role-name>usuario_general</role-name>
+        <group-name>usuario_general</group-name>
+    </security-role-mapping>
+    <security-role-mapping>
+        <role-name>eje_autos_nuevos</role-name>
+        <group-name>eje_autos_nuevos</group-name>
+    </security-role-mapping>
+    <security-role-mapping>
+        <role-name>admin_autos_nuevos</role-name>
+        <group-name>admin_autos_nuevos</group-name>
+    </security-role-mapping>
+    <security-role-mapping>
+        <role-name>eje_refecciones</role-name>
+        <group-name>eje_refecciones</group-name>
+    </security-role-mapping>
+    <security-role-mapping>
+        <role-name>contacto_general</role-name>
+        <group-name>contacto_general</group-name>
+    </security-role-mapping>
+  
+    <resource-ref>
+        <res-ref-name>jms/OdinCorreosQueueFactory</res-ref-name>
+        <jndi-name>jms/OdinCorreosQueueFactory</jndi-name>
+    </resource-ref>        
+    <message-destination-ref>
+        <message-destination-ref-name>jms/OdinCorreosQueue</message-destination-ref-name>
+        <jndi-name>jms/OdinCorreosQueue</jndi-name>
+    </message-destination-ref>
+  
+</glassfish-web-app>

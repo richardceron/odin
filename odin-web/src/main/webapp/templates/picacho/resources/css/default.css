@@ -1,0 +1,32 @@
+html, body, div, img{
+    margin: 0px;
+    padding: 0px;
+    border: 0px;
+    font-family: Arial Narrow, Helvetica CE, sans-serif;
+ 
+}
+
+a {
+    text-decoration: none;
+}
+
+
+h1 {
+    font-family: Arial Narrow, sans-serif;
+    font-size:  23px;
+    margin: 0px;
+    padding: 0px;
+    color: #0069aa;
+}
+
+strong {
+    font-family: Arial Narrow, sans-serif;
+    margin: 0px;
+    padding: 0px;
+    color: #0069aa;
+}
+
+span
+{
+font-weight: bold;
+}

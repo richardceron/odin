@@ -1,0 +1,70 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE composition PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+                template="./../../templates/landrover/landroverTemplate.xhtml">
+
+    <ui:define name="headers">        
+        <link href="#{facesContext.externalContext.requestContextPath}/templates/landrover/resources/css/slider/flexslider.css" rel='stylesheet' type='text/css'></link>
+
+        <script type="text/javascript" src="#{facesContext.externalContext.requestContextPath}/templates/landrover/resources/js/jquery.flexslider.js"></script>
+    </ui:define>
+
+    <ui:define name="content">
+        <style type="text/css">
+            body{
+                overflow-x: hidden;
+            }
+
+            .flex-caption {
+                width: 100%;
+                color: #FFF;
+                font-size: 40px;
+                background-color: #000;
+                margin-left: 300px;
+                height: 150px;
+
+                margin-top: -150px;
+            }
+            li.css a {
+                border-radius: 0;
+            }
+
+            .sliderpocotexto{
+                font-size: 50px;
+            }
+
+        </style>
+
+        <script>
+
+            $(window).load(function () {
+                $('.flexslider').flexslider({
+                    animation: "slide",
+                    controlNav: false,
+                    slideshow: false
+                });
+            });
+        </script>
+
+        <div class="flexslider" style="margin: 0px; border: none;">
+            <ul class="slides">
+                <li>
+                    <img src="#{facesContext.externalContext.requestContextPath}/templates/landrover/resources/images/slider/discovery-sport.jpg"/>                    
+                </li>
+                <li>
+                    <img src="#{facesContext.externalContext.requestContextPath}/templates/landrover/resources/images/slider/discovery.jpg" />                    
+                </li>
+                <li>
+                    <img src="#{facesContext.externalContext.requestContextPath}/templates/landrover/resources/images/slider/land-rover-01.jpg" />                    
+                </li>
+                <li>
+                    <img src="#{facesContext.externalContext.requestContextPath}/templates/landrover/resources/images/slider/land-rover-evoque.jpg" />                    
+                </li>
+                <li>
+                    <img src="#{facesContext.externalContext.requestContextPath}/templates/landrover/resources/images/slider/range-rover-sport.jpg" />                    
+                </li>
+            </ul>
+        </div>
+    </ui:define>
+
+</ui:composition>

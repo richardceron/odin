@@ -1,0 +1,103 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE composition PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+                template="../picachoTemplate.xhtml">
+
+    <ui:define name="titulo">
+        Solicita una Cotización | Picacho Grupo Automotriz | Ford, Lincoln, Mazda, Land Rover, Jaguar, Faw, FAW Trucks
+    </ui:define>
+
+
+    <ui:define name="content">
+        <div id="quienes-somos-info" style="color: #767676;">
+            <h1> SOLICITA UNA COTIZACION </h1>
+            <br /> <br />
+
+            <div style="background-color: fff; padding: 10px; width: 300px;">
+                <span>Ingrese la información solicitada.</span>
+                <br />
+                <br />
+                <form method="post" action="#{facesContext.externalContext.requestContextPath}/faces/SendMailGeneric" >
+
+                    <input type="hidden" name="clave" value="cotizacion_picacho"/>
+                    <input type="hidden" name="tipo" value="Solicitud de cotización"/>
+                    <table border="0">
+                        <tr>
+
+                            <td>Nombre:</td>
+                            <td>
+                                <input type="text" name="nombre" id="nombre" required="true" />
+                            </td>
+                        </tr>
+
+
+                        <tr>
+                            <td>E-mail:</td>
+                            <td>
+                                <input type="email" name="email" id="email" required="true" />
+                            </td>
+                        </tr>
+
+                        <tr>
+                            <td>Teléfono:</td>
+                            <td>
+                                <input type="tel" name="telefono" id="telefono" required="true" />
+                            </td>
+                        </tr>
+
+                        <tr>
+                            <td>Marca:</td>
+                            <td>
+                                <input type="text" name="marca" id="marca" required="true" />
+                            </td>
+                        </tr>
+
+
+                        <tr>
+                            <td>Modelo</td>
+                            <td>
+                                <input type="text" name="modelo" id="modelo" required="true" />
+                            </td>
+                        </tr>
+
+
+                        <tr>
+                            <td>Comentarios:</td>
+                            <td> <textarea name="comentarios" cols="25" rows="3"> </textarea> </td>
+                        </tr>
+
+                        <tr>
+                            <td> &nbsp; </td>
+                            <td align="center"> <br />
+                                <input id="gobutton" type="submit" value="ENVIAR"/></td>
+                        </tr>                      
+
+                    </table>
+
+
+                </form>
+
+
+            </div>	
+
+
+        </div>
+
+        <div id="quienes-somos-forma" style="background-color: #ececec;" align="center">
+
+            <div style="background-color: fff; padding: 10px; width: 300px; height: 65px; border-style: solid; border-color: red;">
+                <span>	CONTACTANOS</span>
+                <br /> <br />
+                Conmutador: &nbsp; &nbsp;&nbsp; &nbsp;   (55) 54841 6500 	
+            </div>	
+            <br />
+            <iframe src="https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d15061.716157796891!2d-99.211872!3d19.3071803!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0xf3a26d660ec2ea55!2sPicacho+Automotriz!5e0!3m2!1ses-419!2smx!4v1455912400044" width="310" height="360" frameborder="0" style="border:0"></iframe>	
+
+
+        </div>
+
+        <div class="break"></div>
+
+    </ui:define>
+
+</ui:composition>

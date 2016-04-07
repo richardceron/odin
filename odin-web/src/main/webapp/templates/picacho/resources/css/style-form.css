@@ -1,0 +1,93 @@
+/***FIRST STYLE THE BUTTON***/
+input#gobutton
+{
+cursor:pointer; /*forces the cursor to change to a hand when the button is hovered*/
+padding:4px 20px; /*add some padding to the inside of the button*/
+background:#0069aa; /*the colour of the button*/
+border:1px solid #01598f; /*required or the default border for the browser will appear*/
+
+/*give the button curved corners, alter the size as required*/
+-moz-border-radius: 4px;
+-webkit-border-radius: 4px;
+border-radius: 4px;
+
+/*give the button a drop shadow*/
+-webkit-box-shadow: 0 0 4px rgba(0,0,0, .75);
+-moz-box-shadow: 0 0 4px rgba(0,0,0, .75);
+box-shadow: 0 0 4px rgba(0,0,0, .75);
+
+/*style the text*/
+color:#fff;
+font-size:14px;
+font-family: Arial Narrow, sans-serif;
+
+}
+
+/***NOW STYLE THE BUTTON'S HOVER AND FOCUS STATES***/
+input#gobutton:hover, input#gobutton:focus{
+background-color :#01598f; /*make the background a little darker*/
+
+/*reduce the drop shadow size to give a pushed button effect*/
+-webkit-box-shadow: 0 0 1px rgba(0,0,0, .75);
+-moz-box-shadow: 0 0 1px rgba(0,0,0, .75);
+box-shadow: 0 0 1px rgba(0,0,0, .75);
+}
+
+
+
+
+input[type=text] {
+	font-family: Arial Narrow, sans-serif;
+	font-size: 14px;
+	color: #2a2e2c;
+	margin-bottom: 5px;
+	display: block;
+	padding: 4px;
+	width: 120px;
+	border: solid 1px #038de3;
+	-moz-border-radius: 4px;
+	-webkit-border-radius: 4px;
+	border-radius: 4px;
+}
+
+input[type=text]:hover {
+	background:#F0F0F0;
+}
+
+
+input[type=text]:focus {
+	background:#F9F9F9;
+	border: solid 1px #373737;
+}
+
+textarea {
+	font-family: Arial Narrow, Helvetica CE, sans-serif;
+	font-size: 14px;
+	color: #2a2e2c;
+	border: solid 1px #038de3;
+	padding: 4px;
+	background-color: #fff;
+	-moz-border-radius: 4px;
+	-webkit-border-radius: 4px;
+	border-radius: 4px;
+}
+textarea:hover {
+	background:#F0F0F0;
+}
+
+textarea:focus {
+	background:#F8F6F6;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+

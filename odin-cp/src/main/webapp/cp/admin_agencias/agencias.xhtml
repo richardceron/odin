@@ -1,0 +1,148 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE composition PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+                template="./../cpTemplate.xhtml"
+                xmlns:h="http://xmlns.jcp.org/jsf/html"
+                xmlns:p="http://primefaces.org/ui"
+                xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <ui:define name="content">        
+
+        <div class="col-lg-12">
+            <h1 class="page-header">
+                Agencias
+            </h1>
+        </div>
+
+        <div class="col-lg-12">
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    <h:outputText value="Crear Agencia" rendered="#{adminController.editarAgencia eq false}"/>
+                    <h:outputText value="Editar Agencia" rendered="#{adminController.editarAgencia eq true}"/>
+                </div>
+                <div class="panel-body">
+                    <div class="row">
+                        <div class="col-lg-7">
+                            <h:form role="form" prependId="false" id="formaMarca">
+                                <p:growl id="messages"/>
+                                <div class="form-group">
+                                    <label>
+                                        Nombre *
+                                    </label>
+                                    <h:inputText styleClass="form-control" required="true" requiredMessage="Nombre Requerido"
+                                                 value="#{adminController.agencia.nombre}"/>
+                                </div>
+
+                                <div class="form-group">
+                                    <label>
+                                        Marca *
+                                    </label>
+                                    <h:selectOneMenu id="marcas" value="#{adminController.agencia.marca}" converter="MarcaConverter"
+                                                     required="true" requiredMessage="Marca Requerida"
+                                                     styleClass="form-control">
+                                        <f:selectItem itemValue="#{null}" itemLabel="Selecciona una marca"/>
+                                        <f:selectItems value="#{adminController.marcas}" var="mar" itemLabel="#{mar.nombre}" itemValue="#{mar}" />                                        
+                                    </h:selectOneMenu>
+                                </div>
+
+                                <div class="form-group">
+                                    <label>
+                                        Grupo
+                                    </label>
+                                    <h:selectOneMenu value="#{adminController.agencia.grupo}" converter="GrupoConverter"
+                                                     styleClass="form-control">
+                                        <f:selectItem itemValue="#{null}" itemLabel="Selecciona un grupo"/>
+                                        <f:selectItems value="#{adminController.grupos}" var="gru" itemLabel="#{gru.nombre}" itemValue="#{gru}" />                                        
+                                    </h:selectOneMenu>
+                                </div>
+
+                                <div class="form-group">                                    
+                                    <p:fileUpload fileUploadListener="#{adminController.addFileToAgencia}" mode="advanced"                                                  
+                                                  multiple="false" skinSimple="true"
+                                                  process="@this"
+                                                  update="messages" auto="true" allowTypes="/(\.|\/)(gif|jpe?g|png)$/"
+                                                  label="Cargar Logo"/>
+                                </div>
+
+                                <div class="form-group">
+                                    <label>
+                                        Dirección *
+                                    </label>
+                                    <h:inputText styleClass="form-control" required="true" requiredMessage="Dirección Requerida"
+                                                 value="#{adminController.agencia.direccion}"/>
+                                </div>
+
+                                <div class="form-group">
+                                    <label>
+                                        Teléfono *
+                                    </label>
+                                    <h:inputText styleClass="form-control" required="true" requiredMessage="Teléfono Requerido"
+                                                 value="#{adminController.agencia.telefono}"/>
+                                </div>                                
+
+                                <div class="form-group">
+                                    <label>
+                                        Ubicación *
+                                    </label>
+                                    <p:gmap id="gmap" center="21.0345, -100.8694" zoom="5" type="ROADMAP" style="width:100%; height:400px">                                        
+                                        <p:ajax event="pointSelect" listener="#{adminController.onPointSelectAgencia}" update="messages" />
+                                    </p:gmap>
+                                </div> 
+
+                                <div class="form-group">
+                                    <label>
+                                        URL *
+                                    </label>
+                                    <h:inputText styleClass="form-control" required="true" requiredMessage="URL Requerida"
+                                                 value="#{adminController.agencia.url}"/>
+                                </div>
+
+                                <div class="form-group">
+                                    <label>
+                                        RFC
+                                    </label>
+                                    <h:inputText styleClass="form-control" value="#{adminController.agencia.rfc}"/>
+                                </div>
+
+                                <div class="form-group">
+                                    <label>
+                                        Razón Social
+                                    </label>
+                                    <h:inputText styleClass="form-control" value="#{adminController.agencia.razonSocial}"/>
+                                </div>
+
+                                <p:commandButton rendered="#{adminController.editarAgencia eq false}"
+                                                 action="#{adminController.crearAgencia}" value="Crear"
+                                                 styleClass="btn btn-primary"
+                                                 update="formaMarca, formListadoMarcas"/>
+
+                                <p:commandButton rendered="#{adminController.editarAgencia eq true}"
+                                                 action="#{adminController.actualizarAgencia}" value="Actualizar"
+                                                 styleClass="btn btn-primary"
+                                                 update="formaMarca, formListadoMarcas"/>
+
+                                <p:commandButton action="#{adminController.cancelarEdicionAgencia}" value="Cancelar"
+                                                 styleClass="btn btn-info"
+                                                 update="formaMarca, formListadoMarcas"/>
+                            </h:form>
+                        </div>
+
+                        <div class="col-lg-5">
+                            <h:form role="form" prependId="false" id="formListadoMarcas">
+                                <p:dataTable value="#{adminController.agencias}" var="a"
+                                             rowKey="#{a.id}"
+                                             selectionMode="single" selection="#{adminController.agencia}">
+                                    <p:ajax event="rowSelect" listener="#{adminController.setEditarAgencia(true)}" update="formaMarca" />
+                                    <p:column headerText="Nombre" sortBy="#{a.nombre}" filterMatchMode="contains" filterBy="#{a.nombre}">
+                                        #{a.nombre}
+                                    </p:column>
+                                </p:dataTable>
+                            </h:form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </ui:define>
+
+</ui:composition>

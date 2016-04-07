@@ -1,0 +1,173 @@
+<?xml version='1.0' encoding='UTF-8' ?> 
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html">
+
+    <h:head>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+        <meta name="viewport" content="width=device-width, initial-scale=1"/>
+        <meta name="description" content=""/>
+        <meta name="author" content=""/>
+
+        <!-- Bootstrap Core CSS -->
+        <link href="#{facesContext.externalContext.requestContextPath}/resources/template/bower_components/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet"/>
+
+        <!-- MetisMenu CSS -->
+        <link href="#{facesContext.externalContext.requestContextPath}/resources/template/bower_components/metisMenu/dist/metisMenu.min.css" rel="stylesheet"/>
+
+        <!-- Timeline CSS -->
+        <link href="#{facesContext.externalContext.requestContextPath}/resources/template/dist/css/timeline.css" rel="stylesheet"/>
+
+        <!-- Custom CSS -->
+        <link href="#{facesContext.externalContext.requestContextPath}/resources/template/dist/css/sb-admin-2.css" rel="stylesheet"/>        
+
+        <!-- Custom Fonts -->
+        <link href="#{facesContext.externalContext.requestContextPath}/resources/template/bower_components/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css"/>
+
+        <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+        <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+        <!--[if lt IE 9]>
+            <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+            <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+        <![endif]-->
+
+        <script src='https://maps.googleapis.com/maps/api/js?v=3.exp'></script>
+    </h:head>
+
+    <h:body>
+        <div id="wrapper">
+
+            <!-- Navigation -->
+            <nav class="navbar navbar-default navbar-static-top" role="navigation" style="margin-bottom: 0">
+                <div class="navbar-header">
+                    <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                        <span class="sr-only">Toggle navigation</span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                    </button>
+                    <a class="navbar-brand" href="index.html">Odin CP</a>
+                </div>
+                <!-- /.navbar-header -->
+
+                <ul class="nav navbar-top-links navbar-right">
+
+                    <li class="dropdown">
+                        <a class="dropdown-toggle" data-toggle="dropdown" href="#">
+                            <i class="fa fa-bell fa-fw"></i>  <i class="fa fa-caret-down"></i>
+                        </a>
+                        <ul class="dropdown-menu dropdown-alerts">
+                            <li>
+                                <a href="#">
+                                    <div>
+                                        <i class="fa fa-comment fa-fw"></i> New Comment
+                                        <span class="pull-right text-muted small">4 minutes ago</span>
+                                    </div>
+                                </a>
+                            </li>
+                            <li class="divider"></li>
+                            <li>
+                                <a href="#">
+                                    <div>
+                                        <i class="fa fa-twitter fa-fw"></i> 3 New Followers
+                                        <span class="pull-right text-muted small">12 minutes ago</span>
+                                    </div>
+                                </a>
+                            </li>                            
+                        </ul>
+                        <!-- /.dropdown-alerts -->
+                    </li>
+                    <!-- /.dropdown -->
+                    <li class="dropdown">
+                        <a class="dropdown-toggle" data-toggle="dropdown" href="#">
+                            <i class="fa fa-user fa-fw"></i>  <i class="fa fa-caret-down"></i>
+                        </a>
+                        <ul class="dropdown-menu dropdown-user">
+                            <li><a href="#"><i class="fa fa-user fa-fw"></i> User Profile</a>
+                            </li>
+                            <li><a href="#"><i class="fa fa-gear fa-fw"></i> Settings</a>
+                            </li>
+                            <li class="divider"></li>
+                            <li><a href="login.html"><i class="fa fa-sign-out fa-fw"></i> Logout</a>
+                            </li>
+                        </ul>
+                        <!-- /.dropdown-user -->
+                    </li>
+                    <!-- /.dropdown -->
+                </ul>
+                <!-- /.navbar-top-links -->
+
+                <div class="navbar-default sidebar" role="navigation">
+                    <div class="sidebar-nav navbar-collapse">
+                        <ul class="nav" id="side-menu">                                                        
+                            <li class="#{view.viewId.contains('/admin_usuarios/') ? 'active' : ''}">
+                                <a href="#"><i class="fa fa-wrench fa-fw"></i> Administración Usuarios<span class="fa arrow"></span></a>
+                                <ul class="nav nav-second-level #{view.viewId.contains('/admin_usuarios/') ? 'in' : ''}">                                                                        
+                                    <li>
+                                        <a class="#{view.viewId eq '/cp/admin_usuarios/roles.xhtml' ? 'active' : ''}" href="#{facesContext.externalContext.requestContextPath}/faces/cp/admin_usuarios/roles.xhtml">Roles</a>
+                                    </li>
+                                    <li>
+                                        <a class="#{view.viewId eq '/cp/admin_usuarios/usuarios.xhtml' ? 'active' : ''}" href="#{facesContext.externalContext.requestContextPath}/faces/cp/admin_usuarios/usuarios.xhtml">Usuarios</a>
+                                    </li>
+                                    <li>
+                                        <a class="#{view.viewId eq '/cp/admin_usuarios/perfiles.xhtml' ? 'active' : ''}" href="#{facesContext.externalContext.requestContextPath}/faces/cp/admin_usuarios/perfiles.xhtml">Perfiles</a>
+                                    </li>
+                                </ul>                                
+                            </li>
+                            <li class="#{view.viewId.contains('/admin_autos/') ? 'active' : ''}">
+                                <a href="#"><i class="fa fa-wrench fa-fw"></i> Administración Autos<span class="fa arrow"></span></a>
+                                <ul class="nav nav-second-level #{view.viewId.contains('/admin_autos/') ? 'in' : ''}">                                                                        
+                                    <li>
+                                        <a class="#{view.viewId eq '/cp/admin_autos/autos.xhtml' ? 'active' : ''}" href="#{facesContext.externalContext.requestContextPath}/faces/cp/admin_autos/autos.xhtml">Autos</a>
+                                    </li>                                    
+                                    <li>
+                                        <a class="#{view.viewId eq '/cp/admin_autos/modelos.xhtml' ? 'active' : ''}" href="#{facesContext.externalContext.requestContextPath}/faces/cp/admin_autos/modelos.xhtml">Modelos</a>
+                                    </li>    
+                                </ul>
+                            </li>
+                            <li class="#{view.viewId.contains('/admin_agencias/') ? 'active' : ''}">
+                                <a href="#"><i class="fa fa-wrench fa-fw"></i> Administración Agencias<span class="fa arrow"></span></a>
+                                <ul class="nav nav-second-level #{view.viewId.contains('/admin_agencias/') ? 'in' : ''}">                                                                                                              
+                                    <li>
+                                        <a class="#{view.viewId eq '/cp/admin_agencias/agencias.xhtml' ? 'active' : ''}" href="#{facesContext.externalContext.requestContextPath}/faces/cp/admin_agencias/agencias.xhtml">Agencias</a>
+                                    </li>                                    
+                                    <li>
+                                        <a class="#{view.viewId eq '/cp/admin_agencias/grupos.xhtml' ? 'active' : ''}" href="#{facesContext.externalContext.requestContextPath}/faces/cp/admin_agencias/grupos.xhtml">Grupos Auto.</a>
+                                    </li>                                    
+                                    <li>
+                                        <a class="#{view.viewId eq '/cp/admin_agencias/marcas.xhtml' ? 'active' : ''}" href="#{facesContext.externalContext.requestContextPath}/faces/cp/admin_agencias/marcas.xhtml">Marcas</a>
+                                    </li>
+                                </ul>
+                                <!-- /.nav-second-level -->
+                            </li>                                                     
+                        </ul>
+                    </div>
+                    <!-- /.sidebar-collapse -->
+                </div>
+                <!-- /.navbar-static-side -->
+            </nav>
+
+            <div id="page-wrapper">
+                <ui:insert name="content"></ui:insert>
+            </div>
+            <!-- /#page-wrapper -->
+
+        </div>
+        <!-- /#wrapper -->
+
+        <!-- jQuery -->
+        <h:outputScript library="primefaces" name="jquery/jquery.js" target="head" />
+
+        <!-- Bootstrap Core JavaScript -->
+        <script src="#{facesContext.externalContext.requestContextPath}/resources/template/bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
+
+        <!-- Metis Menu Plugin JavaScript -->
+        <script src="#{facesContext.externalContext.requestContextPath}/resources/template/bower_components/metisMenu/dist/metisMenu.min.js"></script>        
+
+        <!-- Custom Theme JavaScript -->
+        <script src="#{facesContext.externalContext.requestContextPath}/resources/template/dist/js/sb-admin-2.js"></script>        
+    </h:body>
+
+</html>
