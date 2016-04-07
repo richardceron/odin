@@ -133,6 +133,7 @@
     color: rgb(74, 79, 84);
     font-size: 11px;
     letter-spacing: 0.02em;
+    text-transform: uppercase;
 }
 
 .break{
