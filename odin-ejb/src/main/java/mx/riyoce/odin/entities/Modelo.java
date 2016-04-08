@@ -6,11 +6,15 @@
 package mx.riyoce.odin.entities;
 
 import java.io.Serializable;
+import java.util.LinkedList;
+import java.util.List;
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 
 /**
  *
@@ -31,7 +35,14 @@ public class Modelo implements Serializable {
     
     @ManyToOne
     private Marca marca;
+    
+    @OneToMany(mappedBy="modelo", cascade=CascadeType.ALL)
+    private List<Auto> autos;
 
+    public Modelo(){
+        autos = new LinkedList<>();
+    }
+    
     public Long getId() {
         return id;
     }
@@ -130,6 +141,20 @@ public class Modelo implements Serializable {
      */
     public void setPrecioDesde(float precioDesde) {
         this.precioDesde = precioDesde;
+    }
+
+    /**
+     * @return the autos
+     */
+    public List<Auto> getAutos() {
+        return autos;
+    }
+
+    /**
+     * @param autos the autos to set
+     */
+    public void setAutos(List<Auto> autos) {
+        this.autos = autos;
     }
     
 }

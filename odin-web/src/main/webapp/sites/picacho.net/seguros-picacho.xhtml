@@ -1,7 +1,7 @@
 <?xml version='1.0' encoding='UTF-8' ?>
 <!DOCTYPE composition PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <ui:composition xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
-                template="../picachoTemplate.xhtml">
+                template="/templates/picacho/picachoTemplate.xhtml">
 
 
     <ui:define name="titulo">
@@ -87,7 +87,7 @@
                 <div align="center">Contacta un Agente</div>
                 <br />
                 <form method="post" action="#{facesContext.externalContext.requestContextPath}/faces/SendMailGeneric" id="forma-contacto">
-                    
+
                     <input type="hidden" name="clave" value="seguros_picacho"/>
                     <input type="hidden" name="tipo" value="solicitud información seguros"/>
                     <table border="0">

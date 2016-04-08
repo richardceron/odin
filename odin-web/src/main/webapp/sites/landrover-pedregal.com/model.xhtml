@@ -1,0 +1,36 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE composition PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+                template="/templates/landrover/landroverTemplate.xhtml"
+                xmlns:f="http://xmlns.jcp.org/jsf/core"
+                xmlns:p="http://primefaces.org/ui"
+                xmlns:h="http://xmlns.jcp.org/jsf/html">    
+
+    <f:metadata>
+        <f:viewParam name="modelid" value="#{solicitudController.modelid}" />
+        <f:event type="preRenderView" listener="#{solicitudController.passModelo}" />        
+    </f:metadata>
+
+    <ui:define name="content">       
+        #{solicitudController.modelo.ano} #{solicitudController.modelo.nombre}
+
+        <h:form>
+            <ui:repeat value="#{solicitudController.modelo.autos}" var="a">
+                <p:commandLink process="@this" update="formaCotiza" action="#{solicitudController.setAutoSolicitud(a)}" value="#{a.nombre}"/>
+                <br/>
+            </ui:repeat>
+        </h:form>
+
+        <h:form prependId="false" id="formaCotiza">
+            #{solicitudController.autoSolicitud.nombre}
+            <h:inputText value="#{solicitudController.solicitud.nombre}"/>
+            <br/>
+            <h:inputText value="#{solicitudController.solicitud.email}"/>
+            <br/>
+            <h:selectBooleanCheckbox value="#{solicitudController.aceptarTerminosCondiciones}"/>
+            <p:commandButton update="@form" action="#{solicitudController.generarSolicitudCotizacionAutosNuevos}" value="enviar"/>
+        </h:form>
+
+    </ui:define>
+
+</ui:composition>

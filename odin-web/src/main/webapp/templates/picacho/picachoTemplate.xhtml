@@ -10,18 +10,21 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
         <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
         <meta name="language" content="Spanish"/>
-   		<meta http-equiv="content-language" content="es"/>
-    	<meta name="msvalidate.01" content="7FD7FD6A523015A01429B96090B5EF23" />
-    	<meta name="Description" content="Seminuevos Picacho, más de 100 unidades en inventario seminuevos,  Haz tu cita a servicio." />
-    	<meta name="keywords" content="Gran Feria de Crédito Ford, Grupo Picacho, Ford, Lincoln, Mazda, Land Rover, Jaguar, Faw, Autos Seminuevos, Seminuevos, Cotiza un Auto, Financiamiento, Seguros, Atlas, Autofinanciamiento, autos ford, autos mazda, autos lincoln, ford 2014, 2015, 2016, Seminuevos Certificados, Cotiza tu Seguro, prueba de manejo del Ikon, Fiesta, Focus, Fusion, Mustang, Escape, Edge, Explorer, Expedition, Ecosport, ranger Lobo, Serie E, Serie F, Transit."/>
-	    <meta name="author" content="Picacho Grupo Automotriz, S.A de C.V."/>	
+        <meta http-equiv="content-language" content="es"/>
+
+        <meta name="msvalidate.01" content="7FD7FD6A523015A01429B96090B5EF23" />
+        <meta name="google-site-verification" content="-SgPYxYHVU13grclF3d1gOL1-paX1HkzYu0lBfDIfJI" />
+        <meta name="Description" content="Picacho con más de 100 unidades en inventario seminuevas,  haz tu cita a servicio." />
+        <meta name="keywords" content="Gran Feria de Crédito Ford, Grupo Picacho, Ford, BAIC Internacional , Lincoln, Mazda, Land Rover, Jaguar, Faw, Autos Seminuevos, Seminuevos, Cotiza un Auto, Financiamiento, Seguros, Atlas, Autofinanciamiento, autos ford, autos mazda, autos lincoln, ford 2014, 2015, 2016, Seminuevos Certificados, Cotiza tu Seguro, prueba de manejo del Ikon, Fiesta, Focus, Fusion, Mustang, Escape, Edge, Explorer, Expedition, Ecosport, ranger Lobo, Serie E, Serie F, Transit."/>
+        <meta name="author" content="Picacho Grupo Automotriz."/>	
+        <meta name="copyright" content="© 2016, Picacho Grupo Automotriz, S.A de C.V."/>
 
         <link rel="icon" type="image/png" href="#{facesContext.externalContext.requestContextPath}/resources/images/favicon.png" />
 
         <link href="#{facesContext.externalContext.requestContextPath}/templates/picacho/resources/css/default.css" rel='stylesheet' type='text/css'></link>
         <link href="#{facesContext.externalContext.requestContextPath}/templates/picacho/resources/css/cssLayout.css" rel='stylesheet' type='text/css'></link>
         <link href="#{facesContext.externalContext.requestContextPath}/templates/picacho/resources/css/responsiveLayout.css" rel='stylesheet' type='text/css'></link>
-     <link href="#{facesContext.externalContext.requestContextPath}/templates/picacho/resources/css/style-form.css" rel='stylesheet' type='text/css'></link>
+        <link href="#{facesContext.externalContext.requestContextPath}/templates/picacho/resources/css/style-form.css" rel='stylesheet' type='text/css'></link>
 
         <h:outputScript library="primefaces" name="jquery/jquery.js" target="head" />
 
@@ -31,10 +34,28 @@
 
 
         <title>
-        	<ui:insert name="titulo"> Grupo Picacho Sitio Oficial | Ford, Lincoln, Mazda, Land Rover, Jaguar, Faw, FAW Trucks </ui:insert>
+            <ui:insert name="titulo"> Picacho Grupo Automotriz | Ford, Mazda, Lincoln, Land Rover, Jaguar, Faw, BAIC Internacional , FAW Trucks </ui:insert>
         </title>
 
-        
+        <script>
+            (function (i, s, o, g, r, a, m) {
+                i['GoogleAnalyticsObject'] = r;
+                i[r] = i[r] || function () {
+                    (i[r].q = i[r].q || []).push(arguments)
+                }, i[r].l = 1 * new Date();
+                a = s.createElement(o),
+                        m = s.getElementsByTagName(o)[0];
+                a.async = 1;
+                a.src = g;
+                m.parentNode.insertBefore(a, m)
+            })(window, document, 'script', '//www.google-analytics.com/analytics.js', 'ga');
+
+            ga('create', 'UA-75288300-1', 'auto');
+            ga('send', 'pageview');
+
+        </script>
+
+
     </h:head>
 
     <h:body>
@@ -42,17 +63,17 @@
         <div id="full-top">
             <div id="top">
                 <a id="top-telefono" href="tel:5554816500" class="top-link">
-                    <img src="#{facesContext.externalContext.requestContextPath}/templates/picacho/resources/images/icon-tel.png"/>
+                    <img src="#{facesContext.externalContext.requestContextPath}/templates/picacho/resources/images/icon-tel.png" alt="(55) 5481 6500"/>
                     (55) 54816500
                 </a>
                 <a id="top-mail" href="mailto:contacto@picacho.net" class="top-link">
-                    <img src="#{facesContext.externalContext.requestContextPath}/templates/picacho/resources/images/icon-sobre.png"/>
+                    <img src="#{facesContext.externalContext.requestContextPath}/templates/picacho/resources/images/icon-sobre.png" alt="contacto picacho"/>
                     contacto@picacho.net
                 </a>
                 <a id="top-redes" class="top-link">
                     Siguenos
-                    <img src="#{facesContext.externalContext.requestContextPath}/templates/picacho/resources/images/icon-face.png"/>
-                    <img src="#{facesContext.externalContext.requestContextPath}/templates/picacho/resources/images/icon-tw.png"/>                    
+                    <img src="#{facesContext.externalContext.requestContextPath}/templates/picacho/resources/images/icon-face.png" alt="Facebook Picacho"/>
+                    <img src="#{facesContext.externalContext.requestContextPath}/templates/picacho/resources/images/icon-tw.png" alt="Twitter Picacho"/>                    
                 </a>
             </div>
         </div>
@@ -60,11 +81,11 @@
         <div id="full-menu">
             <div id="wrapper-menu">
                 <a id="logo" href="#{facesContext.externalContext.requestContextPath}/">
-                    <img src="#{facesContext.externalContext.requestContextPath}/templates/picacho/resources/images/logo-picacho.png"/>
+                    <img src="#{facesContext.externalContext.requestContextPath}/templates/picacho/resources/images/logo-picacho.png" alt="Picacho Grupo Automotriz"/>
                 </a>
 
                 <div onclick="$('#responsive-menu').slideToggle();" id="responsive-menu-bar">
-                    <img src="#{facesContext.externalContext.requestContextPath}/templates/picacho/resources/images/main.png"/>
+                    <img src="#{facesContext.externalContext.requestContextPath}/templates/picacho/resources/images/main.png" alt="menu picacho"/>
                     <span>
                         MENU
                     </span>
@@ -100,30 +121,30 @@
                         <span>
                             AGENCIAS
                         </span>
-                        
+
                         <li>
-                        	<a href="http://fordpicacho.com.mx/"> Ford Picacho </a>
-                        	<a href="http://www.fordpicachotlahuac.mx/"> Ford Tlahuac </a>
-                        	<a href="http://lincolnpicacho.mx/"> Lincoln Picacho </a>
-                        	<a href="http://www.jaguar-pedregal.com/"> Jaguar Pedregal </a>
-                        	<a href="http://www.landrover-pedregal.com/"> Land Rover Pedregal </a>
-                        	<a href="http://www.mazdapicacho.com.mx/"> Mazda Picacho </a>
-                        	<a href="http://www.mazdasanangel.com.mx/"> Mazda San Angel </a>
-                        	<a href="http://www.mazdacuernavaca.com.mx/"> Mazda Cuernavaca </a>
-                        	<a href="http://www.mazdacuautla.com.mx/"> Mazda Cuautla </a>
-                        	<a href="http://fawpicacho.com.mx/"> Faw Trucks Picacho </a>
-                        	<a href="http://www.seminuevospicacho.com.mx/"> Seminuevos Picacho </a>
-                        	
+                            <a href="http://fordpicacho.com.mx/"> Ford Picacho </a>
+                            <a href="http://www.fordpicachotlahuac.mx/"> Ford Tlahuac </a>
+                            <a href="http://lincolnpicacho.mx/"> Lincoln Picacho </a>
+                            <a href="http://www.jaguar-pedregal.com/"> Jaguar Pedregal </a>
+                            <a href="http://www.landrover-pedregal.com/"> Land Rover Pedregal </a>
+                            <a href="http://www.mazdapicacho.com.mx/"> Mazda Picacho </a>
+                            <a href="http://www.mazdasanangel.com.mx/"> Mazda San Angel </a>
+                            <a href="http://www.mazdacuernavaca.com.mx/"> Mazda Cuernavaca </a>
+                            <a href="http://www.mazdacuautla.com.mx/"> Mazda Cuautla </a>
+                            <a href="http://fawpicacho.com.mx/"> Faw Trucks Picacho </a>
+                            <a href="http://www.seminuevospicacho.com.mx/"> Seminuevos Picacho </a>
+
                         </li>
-                        
+
                     </ul>
                     <ul>
-                        <a href="#{facesContext.externalContext.requestContextPath}/faces/pages/seminuevos-picacho.xhtml">
+                        <a href="#{facesContext.externalContext.requestContextPath}/seminuevos-picacho.xhtml">
                             SEMINUEVOS
                         </a>                        
                     </ul>
                     <ul>
-                        <a href="#{facesContext.externalContext.requestContextPath}/faces/pages/seguros-picacho.xhtml">
+                        <a href="#{facesContext.externalContext.requestContextPath}/seguros-picacho.xhtml">
                             SEGUROS
                         </a>
                     </ul>
@@ -132,19 +153,19 @@
                             REFACCIONES
                         </span>
                         <li>
-                        <a href="#{facesContext.externalContext.requestContextPath}/faces/pages/catalogo-de-partes-ford.xhtml">Catálogo de Partes FORD </a>
-                        <a href="#{facesContext.externalContext.requestContextPath}/faces/pages/catalogo-de-partes-mazda.xhtml">Catalogo de Partes MAZDA </a>
+                            <a href="#{facesContext.externalContext.requestContextPath}/catalogo-de-partes-ford.xhtml">Catálogo de Partes FORD </a>
+                            <a href="#{facesContext.externalContext.requestContextPath}/catalogo-de-partes-mazda.xhtml">Catalogo de Partes MAZDA </a>
                         </li>
                     </ul>
-                    
-                    
+
+
                     <ul>
-                        <a href="#{facesContext.externalContext.requestContextPath}/faces/pages/bolsa-de-trabajo.xhtml">
+                        <a href="#{facesContext.externalContext.requestContextPath}/bolsa-de-trabajo.xhtml">
                             BOLSA DE TRABAJO
                         </a>
                     </ul>
                     <ul>
-                        <a href="#{facesContext.externalContext.requestContextPath}/faces/pages/contacto-picacho.xhtml">
+                        <a href="#{facesContext.externalContext.requestContextPath}/contacto-picacho.xhtml">
                             CONTACTO
                         </a>
                     </ul>
@@ -161,22 +182,22 @@
 
         <div id="full-banners">
             <div id="banners">
-            	
-            	 <a href="#{facesContext.externalContext.requestContextPath}/faces/pages/prueba-de-manejo.xhtml">
-                    <img src="#{facesContext.externalContext.requestContextPath}/templates/picacho/resources/images/banners/prueba-de-manejo.jpg"/>
+
+                <a href="#{facesContext.externalContext.requestContextPath}/prueba-de-manejo.xhtml">
+                    <img src="#{facesContext.externalContext.requestContextPath}/resources/images/banners/prueba-de-manejo.jpg" alt="Prueba de Manejo Picacho"/>
                 </a>
-                <a href="#{facesContext.externalContext.requestContextPath}/faces/pages/cotizar-auto.xhtml">
-                    <img src="#{facesContext.externalContext.requestContextPath}/templates/picacho/resources/images/banners/solicita-una-cotizacion.jpg"/>
+                <a href="#{facesContext.externalContext.requestContextPath}/cotizar-auto.xhtml">
+                    <img src="#{facesContext.externalContext.requestContextPath}/templates/picacho/resources/images/banners/solicita-una-cotizacion.jpg" alt="Cotiza un Auto en Picacho"/>
                 </a>
-            	
-                <a href="#{facesContext.externalContext.requestContextPath}/faces/pages/cita-servicio.xhtml">
-                    <img src="#{facesContext.externalContext.requestContextPath}/templates/picacho/resources/images/banners/cita-a-servicio.jpg"/>
+
+                <a href="#{facesContext.externalContext.requestContextPath}/cita-servicio.xhtml">
+                    <img src="#{facesContext.externalContext.requestContextPath}/templates/picacho/resources/images/banners/cita-a-servicio.jpg" alt="Agenda una cita a servicio en picacho"/>
                 </a>
-                <a href="#{facesContext.externalContext.requestContextPath}/faces/pages/seminuevos-picacho.xhtml">
-                    <img src="#{facesContext.externalContext.requestContextPath}/templates/picacho/resources/images/banners/autos-seminuevos-picacho.jpg"/>
+                <a href="#{facesContext.externalContext.requestContextPath}/seminuevos-picacho.xhtml">
+                    <img src="#{facesContext.externalContext.requestContextPath}/templates/picacho/resources/images/banners/autos-seminuevos-picacho.jpg" alt="Seminuevos Picacho"/>
                 </a>
-               
-                
+
+
             </div>
         </div>
 
@@ -186,12 +207,12 @@
                     <span>NOSOTROS</span>    
                     <div class="bottom-shortcut-title-line"></div>
                     <div class="break"></div>
-                    <a href="#{facesContext.externalContext.requestContextPath}/faces/pages/quienes-somos.xhtml">
-                                  
+                    <a href="#{facesContext.externalContext.requestContextPath}/quienes-somos.xhtml">
+
                         Quines Somos
-                        </a>
-                         
-                    <a href="#{facesContext.externalContext.requestContextPath}/faces/pages/aviso-de-privacidad.xhtml">
+                    </a>
+
+                    <a href="#{facesContext.externalContext.requestContextPath}/aviso-de-privacidad.xhtml">
                         Aviso de Privacidad
                     </a>
                 </div>
@@ -199,31 +220,31 @@
                     <span>SERVICIOS</span>
                     <div class="bottom-shortcut-title-line"></div>
                     <div class="break"></div>
-                    <a href="#{facesContext.externalContext.requestContextPath}/faces/pages/cotizar-auto.xhtml">
+                    <a href="#{facesContext.externalContext.requestContextPath}/cotizar-auto.xhtml">
                         Cotizar Auto
                     </a>
-                    <a href="#{facesContext.externalContext.requestContextPath}/faces/pages/prueba-de-manejo.xhtml">
+                    <a href="#{facesContext.externalContext.requestContextPath}/prueba-de-manejo.xhtml">
                         Pruba de Manejo
                     </a>
-                    <a href="#{facesContext.externalContext.requestContextPath}/faces/pages/cita-servicio.xhtml">
+                    <a href="#{facesContext.externalContext.requestContextPath}/cita-servicio.xhtml">
                         Cita a Servicio
                     </a>
-                     <a href="#{facesContext.externalContext.requestContextPath}/faces/pages/seguros-picacho.xhtml">
+                    <a href="#{facesContext.externalContext.requestContextPath}/seguros-picacho.xhtml">
                         Cotizar Seguros
                     </a>
-                    <a href="#{facesContext.externalContext.requestContextPath}/faces/pages/factura.xhtml">
+                    <a href="#{facesContext.externalContext.requestContextPath}/factura.xhtml">
                         Facturación Electrónica
                     </a>
-                     <a href="#{facesContext.externalContext.requestContextPath}/faces/pages/tramites-vehiculares.xhtml">
+                    <a href="#{facesContext.externalContext.requestContextPath}/tramites-vehiculares.xhtml">
                         Tramites Vehiculares
                     </a>
-                    
+
                 </div>
                 <div class="bottom-shortcut">
                     <span>MARCAS</span>
                     <div class="bottom-shortcut-title-line"></div>
                     <div class="break"></div>
-                    
+
                     <a href="http://fordpicacho.com.mx/" target="_blank">
                         Ford
                     </a>
@@ -242,13 +263,13 @@
                     <a href="http://fawpicacho.com.mx/" target="_blank">
                         Faw
                     </a>
-                    
+
                 </div>
                 <div class="bottom-shortcut">
                     <span>SEMINUEVOS</span>
                     <div class="bottom-shortcut-title-line"></div>
                     <div class="break"></div>
-                    <a href="#{facesContext.externalContext.requestContextPath}/faces/pages/seminuevos-picacho.xhtml">
+                    <a href="#{facesContext.externalContext.requestContextPath}/seminuevos-picacho.xhtml">
                         Inventario de Seminuevos
                     </a>
                 </div>
@@ -256,16 +277,16 @@
                     <span>REFACCIONES</span>
                     <div class="bottom-shortcut-title-line"></div>
                     <div class="break"></div>
-                    <a href="#{facesContext.externalContext.requestContextPath}/faces/pages/catalogo-de-partes-ford.xhtml">
+                    <a href="#{facesContext.externalContext.requestContextPath}/catalogo-de-partes-ford.xhtml">
                         Catalogo de Partes Ford
                     </a>
-                    <a href="#{facesContext.externalContext.requestContextPath}/faces/pages/catalogo-de-partes-mazda.xhtml">
+                    <a href="#{facesContext.externalContext.requestContextPath}/catalogo-de-partes-mazda.xhtml">
                         Catalogo de Partes Mazda
                     </a>
                 </div>
                 <div style="cursor: pointer;" class="bottom-shortcut">
                     <span>CONTACTO</span>
-                      <a href="#{facesContext.externalContext.requestContextPath}/faces/pages/contacto-picacho.xhtml">
+                    <a href="#{facesContext.externalContext.requestContextPath}/contacto-picacho.xhtml">
                         Dejanos un Mensaje
                     </a>
                 </div>
@@ -273,7 +294,7 @@
                 <div class="break"></div>
 
                 <div id="content-bottom-redes">
-                    <img src="#{facesContext.externalContext.requestContextPath}/templates/picacho/resources/images/siguenos.jpg"/>
+                    <img src="#{facesContext.externalContext.requestContextPath}/templates/picacho/resources/images/siguenos.jpg" alt="Grupo Picacho"/>
                 </div>
 
                 <div class="break"></div>
@@ -286,7 +307,7 @@
             <div class="break"></div>
 
             <center style="color: #636363; font-size: 10px;">
-                <img style="width: 110px; height: auto;" src="#{facesContext.externalContext.requestContextPath}/templates/picacho/resources/images/logo-picacho.png"/>
+                <img style="width: 110px; height: auto;" src="#{facesContext.externalContext.requestContextPath}/resources/images/logo-picacho.png" alt="Picacho Grupo Automotriz"/>
                 <div class="break"></div>
                 &copy; 2016 Picacho Grupo Automotriz. TODOS LOS DERECHOS RESERVADOS
             </center>

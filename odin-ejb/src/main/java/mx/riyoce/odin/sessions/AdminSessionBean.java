@@ -13,6 +13,7 @@ import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.NoResultException;
 import javax.persistence.PersistenceContext;
+import javax.persistence.Query;
 import mx.riyoce.odin.entities.Agencia;
 import mx.riyoce.odin.entities.Usuario;
 import mx.riyoce.odin.entities.GrupoAutomotriz;
@@ -82,7 +83,7 @@ public class AdminSessionBean implements Serializable {
     }
 
     /* Terminan métodos para usuarios */
- /* Inician métodos para perfiles */
+    /* Inician métodos para perfiles */
     public List<Perfil> getPerfiles() {
         try {
             return em.createQuery("SELECT DISTINCT lp FROM Perfil lp ORDER BY lp.nombre ASC").getResultList();
@@ -103,7 +104,7 @@ public class AdminSessionBean implements Serializable {
 
     /* Terminan métodos para perfiles */
 
- /* Inician métodos para roles */
+    /* Inician métodos para roles */
     public List<Rol> getRoles() {
         try {
             return em.createQuery("SELECT DISTINCT lr FROM Rol lr ORDER BY lr.agencia.nombre ASC").getResultList();
@@ -124,7 +125,7 @@ public class AdminSessionBean implements Serializable {
 
     /* Terminan métodos para roles */
 
- /* Inician métodos para agencias */
+    /* Inician métodos para agencias */
     public List<Agencia> getAgencias() {
         try {
             return em.createQuery("SELECT DISTINCT la FROM Agencia la ORDER BY la.nombre ASC").getResultList();
@@ -143,9 +144,21 @@ public class AdminSessionBean implements Serializable {
         }
     }
 
+    public Agencia getAgenciaByDominio(String dom) {
+        try {
+            Query q = em.createQuery("SELECT a FROM Agencia a WHERE a.url LIKE :dom");
+            q.setParameter("dom", "%" + dom + "%");
+            q.setMaxResults(1);
+            return (Agencia) q.getSingleResult();
+        } catch (Exception e) {
+            Logger.getLogger(this.getClass().getName()).log(Level.SEVERE, "Error al traer la agencia por dominio", e);
+            return null;
+        }
+    }
+
     /* Terminan métodos para agencias */
 
- /* Inician métodos para grupo */
+    /* Inician métodos para grupo */
     public List<GrupoAutomotriz> getGruposAutomotrices() {
         try {
             return em.createQuery("SELECT DISTINCT lg FROM GrupoAutomotriz lg ORDER BY lg.nombre ASC").getResultList();
@@ -166,7 +179,7 @@ public class AdminSessionBean implements Serializable {
 
     /* Terminan métodos para grupos */
 
- /* Inician métodos para marcas */
+    /* Inician métodos para marcas */
     public List<Marca> getMarcas() {
         try {
             return em.createQuery("SELECT DISTINCT lm FROM Marca lm ORDER BY lm.nombre ASC").getResultList();

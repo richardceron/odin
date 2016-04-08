@@ -31,6 +31,10 @@
         <group-name>admin_autos_nuevos</group-name>
     </security-role-mapping>
     <security-role-mapping>
+        <role-name>eje_servicio</role-name>
+        <group-name>eje_servicio</group-name>
+    </security-role-mapping>
+    <security-role-mapping>
         <role-name>eje_refecciones</role-name>
         <group-name>eje_refecciones</group-name>
     </security-role-mapping>

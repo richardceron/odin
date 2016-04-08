@@ -1,14 +1,14 @@
 <?xml version='1.0' encoding='UTF-8' ?>
 <!DOCTYPE composition PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <ui:composition xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
-                template="../picachoTemplate.xhtml">
+                template="/templates/picacho/picachoTemplate.xhtml">
 
     <ui:define name="headers">
         <link rel="stylesheet" href="//code.jquery.com/ui/1.11.4/themes/smoothness/jquery-ui.css"/>
         <script src="//code.jquery.com/jquery-1.10.2.js"></script>
         <script src="//code.jquery.com/ui/1.11.4/jquery-ui.js"></script>
     </ui:define>
-    
+
     <ui:define name="titulo">
         Agenda tu Cita a Servicio | Picacho Grupo Automotriz | Ford, Lincoln, Mazda, Land Rover, Jaguar, Faw, FAW Trucks
     </ui:define>
@@ -65,7 +65,7 @@
                                 <input type="text" name="modelo" id="modelo" size="30" />
                             </td>
                         </tr>
-                        
+
                         <tr>
                             <td>Fecha</td>
                             <td>
@@ -89,7 +89,7 @@
 
                     <script>
                         $(function () {
-                            $("#fecha").datepicker({ dateFormat: 'dd-mm-yy' });
+                            $("#fecha").datepicker({dateFormat: 'dd-mm-yy'});
                         });
                     </script>
 

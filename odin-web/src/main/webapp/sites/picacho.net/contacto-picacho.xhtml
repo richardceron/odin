@@ -1,7 +1,7 @@
 <?xml version='1.0' encoding='UTF-8' ?>
 <!DOCTYPE composition PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <ui:composition xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
-                template="../picachoTemplate.xhtml">
+                template="/templates/picacho/picachoTemplate.xhtml">
 
     <ui:define name="titulo">
         Contacto Picacho | Picacho Grupo Automotriz | Ford, Lincoln, Mazda, Land Rover, Jaguar, Faw, FAW Trucks
@@ -18,10 +18,10 @@
                 <br />
                 <br />
                 <form method="post" action="#{facesContext.externalContext.requestContextPath}/faces/SendMailGeneric" id="forma-contacto">
-                    
+
                     <input type="hidden" name="clave" value="contacto_general_picacho"/>
                     <input type="hidden" name="tipo" value="Contacto General"/>
-                    
+
                     <table border="0">
                         <tr>
 
