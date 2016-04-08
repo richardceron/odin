@@ -31,6 +31,8 @@ public class EmailHelper {
             sb.append("<div style=\"width: 100%; height: 50px; line-height: 50px; text-align: center; background-color: rgb(2, 2, 126); color: #FFF; font-size: 25px; font-family: Helvetica;\">");
             sb.append("Nueva solicitud de ");
             sb.append(s.getTipo().getNombre());
+            sb.append(" - ");
+            sb.append(s.getAgencia().getNombre());
             sb.append("</div>");
             sb.append("<br/>");
             sb.append("<br/>");
@@ -108,8 +110,8 @@ public class EmailHelper {
             sb.append("</b>");
             sb.append("<br/>");
             sb.append("<br/>");
-            sb.append("Gracias por tu solicitud de ");
-            sb.append(s.getTipo().getNombre());
+            sb.append("Gracias por tu solicitud");
+            //sb.append(s.getTipo().getNombre());
             sb.append(". En breve un ejecutivo se pondrá en contacto contigo.");
             
             sb.append("<br/>");

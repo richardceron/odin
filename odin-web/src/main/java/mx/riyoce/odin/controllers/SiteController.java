@@ -6,13 +6,17 @@
 package mx.riyoce.odin.controllers;
 
 import java.io.Serializable;
+import java.util.List;
+import javax.annotation.PostConstruct;
 import javax.ejb.EJB;
 import javax.enterprise.context.SessionScoped;
 import javax.faces.context.FacesContext;
 import javax.inject.Named;
 import javax.servlet.http.HttpServletRequest;
 import mx.riyoce.odin.entities.Agencia;
+import mx.riyoce.odin.entities.Modelo;
 import mx.riyoce.odin.sessions.AdminSessionBean;
+import mx.riyoce.odin.sessions.AutosSessionBean;
 
 /**
  *
@@ -24,17 +28,32 @@ import mx.riyoce.odin.sessions.AdminSessionBean;
 public class SiteController implements Serializable{
     
     @EJB
-    private AdminSessionBean asb;
+    private AdminSessionBean adminsb;
+    @EJB
+    private AutosSessionBean asb;
     
     private Agencia agencia;
+    
+    public SiteController(){
+        agencia = null;
+    }
+    
+    @PostConstruct
+    public void init(){
+        getAgencia();
+    }
 
+    public List<Modelo> getModelosByCurrenSiteMarca(){
+        return asb.getModelosByMarca(agencia.getMarca());
+    }
+    
     /**
      * @return the agencia
      */
     public Agencia getAgencia() {
         if (agencia == null) {
             String dom = ((HttpServletRequest) FacesContext.getCurrentInstance().getExternalContext().getRequest()).getServerName();
-            agencia = asb.getAgenciaByDominio(dom);
+            agencia = adminsb.getAgenciaByDominio(dom);
         }
         return agencia;
     }

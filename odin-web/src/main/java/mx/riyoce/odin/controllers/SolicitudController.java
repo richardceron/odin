@@ -95,6 +95,8 @@ public class SolicitudController implements Serializable {
 
                 sb.append("<b>Auto: </b>");
                 sb.append(autoSolicitud.getNombre());
+                sb.append(" ");
+                sb.append(autoSolicitud.getModelo().getAno());
                 sb.append("<br/>");
 
                 solicitud.setDescripcionSolicitud(sb.toString());
@@ -196,11 +198,7 @@ public class SolicitudController implements Serializable {
     
     public List<Marca> getAllMarcas(){
         return adminsb.getMarcas();
-    }
-    
-    public List<Modelo> getModelosByCurrenSiteMarca(){
-        return asb.getModelosByMarca(sc.getAgencia().getMarca());
-    }
+    }        
     
     public List<Modelo> getModelosByMarca(){
         return asb.getModelosByMarca(marca);

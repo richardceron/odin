@@ -46,6 +46,24 @@ and open the template in the editor.
         display: none;
     }
 
+    #contentmodelos {
+        top: 210px;
+    }
+
+    .modelo {
+        width: 100%;
+        clear: both;
+    }
+
+    .modelo img {
+        width: 100%;
+        height: auto;
+    }
+
+    #content-call-to-action-template {
+        display: none;
+    }
+
     #full-bottom{
         display: none;
     }

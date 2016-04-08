@@ -62,6 +62,134 @@
     cursor: pointer;
 }
 
+#contentmodelos {
+    display: none;
+    position: absolute;
+    top: 106px;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    background-color: rgb(248, 249, 249);
+    overflow: auto;
+    z-index: 200;
+}
+
+.modelo {
+    opacity: 0;
+    width: 25%;
+    height: 410px;
+    float: left;
+    outline: rgb(238, 241, 241) solid 1px;
+    text-align: center;
+    position: relative;
+    background-color: #FFF;
+}
+
+.modelo img {
+    width: 100%;
+    height: auto;
+}
+
+.modelo span {
+    display: inline-block; 
+    margin-top: 10px;
+    height: 50px;
+    line-height: 50px;
+    border-top: #000 solid 2px;
+    border-bottom: #000 solid 2px;
+    text-align: center;
+    font-size: 16px;
+    color: rgb(12, 18, 28)!important;
+    font-weight: 700;
+    letter-spacing: 0.05em;
+    color: #FFFFFF;
+    text-transform: uppercase;    
+}
+
+.precio-desde {
+    display: block;
+    text-align: center;
+    font-weight: normal;
+    font-size: 11px;
+    letter-spacing: 2px;
+    color: rgb(74, 79, 84);
+}
+
+.modelo p {
+    display: block;
+    width: 100%;
+    height: auto;
+    text-align: center;
+    font-style: italic;
+    font-size: 12px;
+    color: #FFFFFF;
+}
+
+.modelo a {
+    display: block;        
+    width: 50%;
+    height: 40px;
+    line-height: 40px;
+    border-top: rgb(43, 43, 43) solid 1px;
+    color: #FFFFFF;    
+    font-size: 12px;
+}
+
+#content-call-to-action-template {
+    height: 200px;
+    width: 250px;
+    position: fixed;
+    top: 250px;
+    z-index: 100;
+    right: 0;
+}
+
+#content-call-to-action-template ul, #content-call-to-action-template li {
+    -webkit-margin-before: 0px;
+    -webkit-margin-after: 0px;
+    -webkit-margin-start: 0px;
+    -webkit-margin-end: 0px;
+    -webkit-padding-start: 0px;
+    list-style: none;
+    padding: 0px !important;
+    padding-left: 0px;
+    display: block;
+    width: 250px;
+    height: 50px;
+    position: relative;
+    clear: both;
+    margin: 0px;
+}
+
+#call-to-action-template {
+    height: 200px;
+    width: 50px;
+    background-color: #0B121C;
+    float: right;
+}
+
+#content-call-to-action-template img {
+    position: absolute;
+    cursor: pointer;
+    float: right !important;
+    right: 0;
+}
+
+.call-to-action-description-template {
+    display: none;
+    height: 50px;
+    width: 190px;
+    padding-left: 10px;
+    line-height: 50px;
+    color: #ffffff;	
+    background-color: rgba(18, 24, 34, 0.8);
+    cursor: pointer;
+}
+
+.call-to-action-description-template a {
+    color: #FFFFFF;
+}
+
 #full-bottom{
     width: 100%;
     height: 240px;

@@ -2,7 +2,8 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
-      xmlns:h="http://xmlns.jcp.org/jsf/html">
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
 
     <h:head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
@@ -43,9 +44,9 @@
                         Servicio (55) 5377 5740
                     </a>
                 </div>
-                
+
                 <div id="menu">
-                    <a>
+                    <a onclick="showModelos();">
                         MODELOS
                     </a>
                     <a>
@@ -67,6 +68,57 @@
             </div>
         </div>
 
+        <div id="contentmodelos">
+            <ui:repeat value="#{siteController.modelosByCurrenSiteMarca}" var="model">
+                <div class="modelo">
+                    <img style="cursor: pointer;" src="#{facesContext.externalContext.requestContextPath}/templates/landrover/resources/images/models/#{model.claveMarca}.jpg" onclick="location.href = '#{facesContext.externalContext.requestContextPath}/model.xhtml?modelid=#{model.id}';"/>
+                    <span> #{model.nombre} #{model.ano} </span>
+                    
+                    <div class="precio-desde">
+                        Desde 
+                        <h:outputText value="#{model.precioDesde}">
+                            <f:convertNumber  pattern="#,###.##" />
+                        </h:outputText>
+                        USD
+                    </div>                    
+
+                    <a href="#{facesContext.externalContext.requestContextPath}/model.xhtml?modelid=#{model.id}" style="bottom: 35px;">
+                        &#10097; VER DETALLES
+                    </a>
+                    <a href="#{facesContext.externalContext.requestContextPath}/model.xhtml?modelid=#{model.id}" style="bottom: 0px;">
+                        &#10097; SOLICITA UNA COTIZACIÓN
+                    </a>
+                </div>  
+            </ui:repeat>                      
+        </div>
+
+        <div id="content-call-to-action-template">
+            <ul coll-des="call-cotiza-template" onmouseenter="showCollToAction(this);" onmouseleave="hideCollToAction(this);">
+                <img src="#{facesContext.externalContext.requestContextPath}/templates/landrover/resources/images/icon-cotiza.jpg" />
+                <div onclick="location.href = '#{facesContext.externalContext.requestContextPath}solicitar-cotizacion.php';" class="call-to-action-description-template" id="call-cotiza-template">
+                    <a href="#{facesContext.externalContext.requestContextPath}/solicitar-cotizacion.php"> Solicita una cotización </a>
+                </div>
+            </ul>
+            <ul coll-des="call-prueba-template" onmouseenter="showCollToAction(this);" onmouseleave="hideCollToAction(this);">
+                <img src="#{facesContext.externalContext.requestContextPath}/templates/landrover/resources/images/icon-prueba-manejo.jpg" />
+                <div onclick="location.href = '#{facesContext.externalContext.requestContextPath}prueba-manejo.php';" class="call-to-action-description-template" id="call-prueba-template">
+                    <a href="#{facesContext.externalContext.requestContextPath}/prueba-manejo.php"> Prueba de manejo </a>
+                </div>
+            </ul>
+            <ul coll-des="call-cita-template" onmouseenter="showCollToAction(this);" onmouseleave="hideCollToAction(this);">
+                <img src="#{facesContext.externalContext.requestContextPath}/templates/landrover/resources/images/icon-cita-servicio.jpg" />
+                <div onclick="location.href = '#{facesContext.externalContext.requestContextPath}/cita-servicio.php';" class="call-to-action-description-template" id="call-cita-template">
+                    <a href="#{facesContext.externalContext.requestContextPath}/cita-servicio.php"> Cita para servicio </a>
+                </div>
+            </ul>
+            <ul coll-des="call-ubicacion-template" onmouseenter="showCollToAction(this);" onmouseleave="hideCollToAction(this);">
+                <img src="#{facesContext.externalContext.requestContextPath}/templates/landrover/resources/images/icon-ubicacion.jpg" />
+                <div onclick="location.href = '#{facesContext.externalContext.requestContextPath}/mapa.php';" class="call-to-action-description-template" id="call-ubicacion-template">
+                    <a href="#{facesContext.externalContext.requestContextPath}/mapa.php"> Ubicación </a>
+                </div>
+            </ul>
+        </div>
+
         <div id="content">
             <ui:insert name="content">
 
@@ -80,7 +132,7 @@
                         VEHÍCULOS
                     </b>
                     <div class="break"></div>
-                    
+
                     <a href="#">
                         LAND ROVER DISCOVERY SPORT
                     </a>
@@ -105,7 +157,7 @@
                         HERRAMIENTAS DE COMPRA
                     </b>
                     <div class="break"></div>
-                    
+
                     <a href="#">
                         PRUEBA DE MANEJO
                     </a>
@@ -127,11 +179,11 @@
                         CONÉCTESE CON NOSOTROS
                     </b>
                     <div class="break"></div>
-                    
+
                 </div>
             </div>
         </div>
-        
+
         <div id="page-details">
             <a href="#">
                 POLITICAS DE PRIVACIDAD
@@ -143,13 +195,13 @@
                 EVENTOS Y NOTICIAS
             </a>
         </div>
-        
+
         <div id="page-details-line"></div>
-        
+
         <div id="copyright">
             &copy; Land Rover Pedregal 2016
         </div>
-        
+
         <script>
             $(function () {
                 adjustMenu();
