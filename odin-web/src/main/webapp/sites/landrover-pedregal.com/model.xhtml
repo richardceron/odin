@@ -11,26 +11,136 @@
         <f:event type="preRenderView" listener="#{solicitudController.passModelo}" />        
     </f:metadata>
 
-    <ui:define name="content">       
-        #{solicitudController.modelo.ano} #{solicitudController.modelo.nombre}
+    <ui:define name="headers">        
+        <link href="#{facesContext.externalContext.requestContextPath}/templates/landrover/resources/css/slider/flexslider.css" rel='stylesheet' type='text/css'></link>
+
+        <script type="text/javascript" src="#{facesContext.externalContext.requestContextPath}/templates/landrover/resources/js/jquery.flexslider.js"></script>
+    </ui:define>
+
+    <ui:define name="content">
+        <style type="text/css">
+            body{
+                overflow-x: hidden;
+            }
+
+            #content{
+                width: 100%;
+                height: auto;
+            }
+
+            .flex-caption {
+                width: 100%;
+                color: #FFF;
+                font-size: 40px;
+                background-color: #000;
+                margin-left: 300px;
+                height: 150px;
+
+                margin-top: -150px;
+            }
+            li.css a {
+                border-radius: 0;
+            }
+
+            .sliderpocotexto{
+                font-size: 50px;
+            }
+
+        </style>        
+
+        <div class="flexslider" style="margin: 0px; border: none;">
+            <ul class="slides">
+                <li>
+                    <img src="#{facesContext.externalContext.requestContextPath}/templates/landrover/resources/images/models/#{solicitudController.modelo.claveMarca}/1.jpg"/>
+                </li>
+                <li>
+                    <img src="#{facesContext.externalContext.requestContextPath}/templates/landrover/resources/images/models/#{solicitudController.modelo.claveMarca}/2.jpg"/>
+                </li>
+                <li>
+                    <img src="#{facesContext.externalContext.requestContextPath}/templates/landrover/resources/images/models/#{solicitudController.modelo.claveMarca}/3.jpg"/>                 
+                </li>
+                <li>
+                    <img src="#{facesContext.externalContext.requestContextPath}/templates/landrover/resources/images/models/#{solicitudController.modelo.claveMarca}/4.jpg"/>                   
+                </li>
+                <li>
+                    <img src="#{facesContext.externalContext.requestContextPath}/templates/landrover/resources/images/models/#{solicitudController.modelo.claveMarca}/5.jpg"/>                 
+                </li>
+                <li>
+                    <img src="#{facesContext.externalContext.requestContextPath}/templates/landrover/resources/images/models/#{solicitudController.modelo.claveMarca}/6.jpg"/>                   
+                </li>
+                <li>
+                    <img src="#{facesContext.externalContext.requestContextPath}/templates/landrover/resources/images/models/#{solicitudController.modelo.claveMarca}/7.jpg"/>                 
+                </li>
+            </ul>
+        </div>
+
+        <div id="opciones-modelo">
+            <a>
+                <img src="http://newdiscoverysport.landrover-mexico.com/static/images/content/readytogo/brochure.png"/>
+                <div class="break"></div>
+                DESCARGAR FICHA TÉCNICA                                
+            </a>
+            <a>
+                <img src="http://newdiscoverysport.landrover-mexico.com/static/images/content/readytogo/offer.png"/>
+                <div class="break"></div>
+                SOLICITAR COTIZACIÓN
+            </a>
+            <a>
+                <img src="http://newdiscoverysport.landrover-mexico.com/static/images/content/readytogo/build.png"/>                
+                <div class="break"></div>
+                PRUEBA DE MANEJO
+            </a>
+            <a>
+                <img src="http://newdiscoverysport.landrover-mexico.com/static/images/content/readytogo/find.png"/>
+                <div class="break"></div>
+                CITA SERVICIO
+            </a>
+        </div>
 
         <h:form>
-            <ui:repeat value="#{solicitudController.modelo.autos}" var="a">
-                <p:commandLink process="@this" update="formaCotiza" action="#{solicitudController.setAutoSolicitud(a)}" value="#{a.nombre}"/>
-                <br/>
-            </ui:repeat>
+            <div id="content-variaciones">
+                <ui:repeat value="#{solicitudController.modelo.autos}" var="a">
+                    <div class="variacion">
+                        <b>
+                            #{a.nombre}
+                        </b>
+
+                        <div class="break"></div>
+
+                        Desde $
+                        <h:outputText value="#{a.precio}">
+                            <f:convertNumber  pattern="#,###.##" />
+                        </h:outputText>
+                        USD
+
+                        <div class="break"></div>
+
+                        <ui:repeat value="#{a.specs}" var="s">
+                            #{s.nombre}
+                        </ui:repeat>
+
+                        <div class="break"></div>
+
+                        <p:commandLink>
+                            &#10097; Solicitar Cotización
+                        </p:commandLink>
+                        <p:commandLink>
+                            &#10097; Solicitar Prueba de Manejo
+                        </p:commandLink>
+                    </div>
+                </ui:repeat>
+            </div>
         </h:form>
 
-        <h:form prependId="false" id="formaCotiza">
-            #{solicitudController.autoSolicitud.nombre}
-            <h:inputText value="#{solicitudController.solicitud.nombre}"/>
-            <br/>
-            <h:inputText value="#{solicitudController.solicitud.email}"/>
-            <br/>
-            <h:selectBooleanCheckbox value="#{solicitudController.aceptarTerminosCondiciones}"/>
-            <p:commandButton update="@form" action="#{solicitudController.generarSolicitudCotizacionAutosNuevos}" value="enviar"/>
-        </h:form>
-
+        <script>
+            $(window).load(function () {
+                $('.flexslider').flexslider({
+                    animation: "slide",
+                    controlNav: false,
+                    slideshow: true
+                });
+            });
+        </script>
     </ui:define>
 
 </ui:composition>
