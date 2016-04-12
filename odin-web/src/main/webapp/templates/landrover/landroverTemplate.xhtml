@@ -16,6 +16,7 @@
         <link href="#{facesContext.externalContext.requestContextPath}/templates/landrover/resources/css/cssLayout.css" rel='stylesheet' type='text/css'></link>
         <link href="#{facesContext.externalContext.requestContextPath}/templates/landrover/resources/css/responsiveLayout.css" rel='stylesheet' type='text/css'></link>
 
+        <link rel="icon" type="image/png" href="#{facesContext.externalContext.requestContextPath}/templates/landrover/resources/images/favicon.png"/>
         <h:outputScript library="primefaces" name="jquery/jquery.js" target="head" />
 
         <script type="text/javascript" src="#{facesContext.externalContext.requestContextPath}/templates/landrover/resources/js/functions.js"></script>                
@@ -73,7 +74,7 @@
                 <div class="modelo">
                     <img style="cursor: pointer;" src="#{facesContext.externalContext.requestContextPath}/templates/landrover/resources/images/models/#{model.claveMarca}.jpg" onclick="location.href = '#{facesContext.externalContext.requestContextPath}/model.xhtml?modelid=#{model.id}';"/>
                     <span> #{model.nombre} #{model.ano} </span>
-                    
+
                     <div class="precio-desde">
                         DESDE $ 
                         <h:outputText value="#{model.precioDesde}">
@@ -124,7 +125,7 @@
 
             </ui:insert>
         </div>        
-        
+
         <div id="full-bottom">
             <div id="bottom">
                 <div class="bottom-element">

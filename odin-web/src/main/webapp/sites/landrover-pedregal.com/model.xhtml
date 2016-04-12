@@ -121,10 +121,10 @@
 
                         <div class="break"></div>
 
-                        <p:commandLink>
+                        <p:commandLink onsuccess="location.href='cotizar-auto.xhtml';" action="#{solicitudController.setAutoSolicitud(a)}">
                             &#10097; Solicitar Cotización
                         </p:commandLink>
-                        <p:commandLink>
+                        <p:commandLink onsuccess="location.href='prueba-manejo-auto.xhtml';" action="#{solicitudController.setAutoSolicitud(a)}">
                             &#10097; Solicitar Prueba de Manejo
                         </p:commandLink>
                     </div>
