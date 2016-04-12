@@ -91,32 +91,40 @@
                     </a>
                 </div>  
             </ui:repeat>                      
-        </div>
+        </div>        
 
-        <div id="content-call-to-action-template">
-            <ul coll-des="call-cotiza-template" onmouseenter="showCollToAction(this);" onmouseleave="hideCollToAction(this);">
-                <img src="#{facesContext.externalContext.requestContextPath}/templates/landrover/resources/images/icon-cotiza.jpg" />
-                <div onclick="location.href = '#{facesContext.externalContext.requestContextPath}solicitar-cotizacion.php';" class="call-to-action-description-template" id="call-cotiza-template">
-                    <a href="#{facesContext.externalContext.requestContextPath}/solicitar-cotizacion.php"> Solicita una cotización </a>
-                </div>
+        <div id="coll-to-action">
+            <ul>
+                <span id="fist-coll">
+                    <img src="#{facesContext.externalContext.requestContextPath}/templates/landrover/resources/images/icon-cotiza.jpg" />
+                </span>
+                <li>
+                    <a> SOLICITAR COTIZACIÓN </a>
+                </li>
             </ul>
-            <ul coll-des="call-prueba-template" onmouseenter="showCollToAction(this);" onmouseleave="hideCollToAction(this);">
-                <img src="#{facesContext.externalContext.requestContextPath}/templates/landrover/resources/images/icon-prueba-manejo.jpg" />
-                <div onclick="location.href = '#{facesContext.externalContext.requestContextPath}prueba-manejo.php';" class="call-to-action-description-template" id="call-prueba-template">
-                    <a href="#{facesContext.externalContext.requestContextPath}/prueba-manejo.php"> Prueba de manejo </a>
-                </div>
+            <ul>
+                <span>
+                    <img src="#{facesContext.externalContext.requestContextPath}/templates/landrover/resources/images/icon-prueba-manejo.jpg" />
+                </span>
+                <li>
+                    <a> PRUEBA DE MANEJO </a>
+                </li>
             </ul>
-            <ul coll-des="call-cita-template" onmouseenter="showCollToAction(this);" onmouseleave="hideCollToAction(this);">
-                <img src="#{facesContext.externalContext.requestContextPath}/templates/landrover/resources/images/icon-cita-servicio.jpg" />
-                <div onclick="location.href = '#{facesContext.externalContext.requestContextPath}/cita-servicio.php';" class="call-to-action-description-template" id="call-cita-template">
-                    <a href="#{facesContext.externalContext.requestContextPath}/cita-servicio.php"> Cita para servicio </a>
-                </div>
-            </ul>
-            <ul coll-des="call-ubicacion-template" onmouseenter="showCollToAction(this);" onmouseleave="hideCollToAction(this);">
-                <img src="#{facesContext.externalContext.requestContextPath}/templates/landrover/resources/images/icon-ubicacion.jpg" />
-                <div onclick="location.href = '#{facesContext.externalContext.requestContextPath}/mapa.php';" class="call-to-action-description-template" id="call-ubicacion-template">
-                    <a href="#{facesContext.externalContext.requestContextPath}/mapa.php"> Ubicación </a>
-                </div>
+            <ul>
+                <span>
+                    <img src="#{facesContext.externalContext.requestContextPath}/templates/landrover/resources/images/icon-cita-servicio.jpg" />
+                </span>
+                <li>
+                    <a> CITA A SERVICIO </a>
+                </li>
+            </ul>            
+            <ul>
+                <span id="last-coll">
+                    <img src="#{facesContext.externalContext.requestContextPath}/templates/landrover/resources/images/icon-ubicacion.jpg" />
+                </span>
+                <li>
+                    <a> UBICACIÓN </a>
+                </li>
             </ul>
         </div>
 

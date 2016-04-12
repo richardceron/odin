@@ -140,59 +140,83 @@
     margin-top: 80px;
 }
 
-#content-call-to-action-template {
-    height: 200px;
-    width: 250px;
+#coll-to-action{
     position: fixed;
-    top: 250px;
-    z-index: 100;
-    right: 0;
-}
-
-#content-call-to-action-template ul, #content-call-to-action-template li {
-    -webkit-margin-before: 0px;
-    -webkit-margin-after: 0px;
-    -webkit-margin-start: 0px;
-    -webkit-margin-end: 0px;
-    -webkit-padding-start: 0px;
-    list-style: none;
-    padding: 0px !important;
-    padding-left: 0px;
-    display: block;
-    width: 250px;
-    height: 50px;
-    position: relative;
-    clear: both;
-    margin: 0px;
-}
-
-#call-to-action-template {
+    top: 200px;
+    right: 0px;
     height: 200px;
+    width: 250px;
+    z-index: 80;
+    text-align: right;
+}
+
+#coll-to-action ul{
+    list-style-type: none;
+    display: block;
+    padding: 0!important;
+    margin: 0!important;
+    border: 0!important;
+    border-bottom: 0!important;		
+    position: relative;
     width: 50px;
-    background-color: #0B121C;
+    max-width: 250px;
     float: right;
+    clear: both;
 }
 
-#content-call-to-action-template img {
-    position: absolute;
-    cursor: pointer;
-    float: right !important;
-    right: 0;
-}
-
-.call-to-action-description-template {
+#coll-to-action ul li{
     display: none;
+    list-style-type: none;
+    padding: 0!important;
+    margin: 0!important;
+    border: 0!important;
+    border-bottom: 0!important;		
+    position: absolute;
+    float: left;
+    background-color: rgb(12, 18, 28);
+    width: 200px;
     height: 50px;
-    width: 190px;
-    padding-left: 10px;
     line-height: 50px;
-    color: #ffffff;	
-    background-color: rgba(18, 24, 34, 0.8);
-    cursor: pointer;
+    text-align: center;
+    color: #FFFFFF;	
+    top: 0;
 }
 
-.call-to-action-description-template a {
-    color: #FFFFFF;
+#fist-coll{
+    border-top-left-radius: 5px;
+}
+
+#last-coll{
+    border-bottom-left-radius: 5px;
+}
+
+#coll-to-action ul span, #coll-to-action ul span img{		
+    padding: 0!important;
+    margin: 0!important;
+    border: 0!important;	
+}
+
+#coll-to-action ul span img{		
+    height: 50px;
+    width: 50px;
+}
+
+#coll-to-action ul span {	    
+    display: inline-block;
+    height: 50px;
+    width: 50px;    	
+}
+
+#coll-to-action ul:hover {
+    width: 250px;	
+}
+
+#coll-to-action ul:hover span {
+    border-radius: 0px!important;
+}
+
+#coll-to-action ul:hover li{
+    display: block;
 }
 
 #content{
