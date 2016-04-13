@@ -61,7 +61,7 @@ public class SolicitudController implements Serializable {
 
     private Marca marca;
     
-    private Agencia agencia;
+    private Agencia agencia;    
     
     private Solicitud solicitud;
     private Date fechaCita;
@@ -98,7 +98,8 @@ public class SolicitudController implements Serializable {
                 StringBuilder sb = new StringBuilder();
 
                 sb.append("<b>Auto: </b>");
-                sb.append(autoSolicitud.getNombre());
+                String name_auto = autoSolicitud.getModelo().getNombre()+" "+autoSolicitud.getNombre()+" "+autoSolicitud.getModelo().getAno();
+                sb.append(name_auto);
                 sb.append(" ");
                 sb.append(autoSolicitud.getModelo().getAno());
                 sb.append("<br/>");
@@ -251,14 +252,14 @@ public class SolicitudController implements Serializable {
         servicioValet = false;
         aceptarTerminosCondiciones = false;
         agencia = new Agencia();
-    }
-    
-    public List<Marca> getAllMarcas(){
-        return adminsb.getMarcas();
-    }        
+    }             
     
     public List<Modelo> getModelosByMarca(){
         return asb.getModelosByMarca(marca);
+    }
+    
+    public List<Modelo> getModelosByMarca(long id){
+        return asb.getModelosByMarca(adminsb.getMarcaById(id));
     }
 
     public List<Auto> getAutosByModel() {
@@ -268,6 +269,26 @@ public class SolicitudController implements Serializable {
     public List<Auto> getAllAutos() {
         return asb.getAllAutos();
     }
+    
+    public List<Agencia> getAgenciasByMarca(){
+        return adminsb.getAgenciasByMarca(marca);
+    }
+    
+    public List<Agencia> getAgenciasByMarca(Marca m){
+        return adminsb.getAgenciasByMarca(m);
+    }
+    
+    public List<Agencia> getAgenciasByGrupo(long id){
+        return adminsb.getAgenciasByGrupo(adminsb.getGrupoAutomotrizById(id));
+    }
+    
+    public List<Marca> getAllMarcas(){
+        return adminsb.getMarcas();
+    }  
+    
+    public List<Marca> getMarcasGroup(long id){
+        return adminsb.getMarcasGroup(adminsb.getGrupoAutomotrizById(id));
+    }  
 
     public Date getToday() {
         return new Date();

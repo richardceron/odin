@@ -30,8 +30,8 @@ public class MarcaConverter implements Converter{
     public Object getAsObject(FacesContext context, UIComponent component, String value) {
         try {
             return asb.getMarcaById(Long.parseLong(value));
-        } catch(NullPointerException npe){
-            System.out.println(npe.getMessage());
+        } catch (NullPointerException | NumberFormatException ne) {
+            System.out.println("");
             return null;
         } catch (Exception e) {
             Logger.getLogger(this.getClass().getName()).log(Level.SEVERE, "Error al convertir a Marca", e);
@@ -43,9 +43,9 @@ public class MarcaConverter implements Converter{
     public String getAsString(FacesContext context, UIComponent component, Object value) {
         try {
             return ((Marca)value).toString();
-        } catch(NullPointerException npe){
-            System.out.println(npe.getMessage());
-            return "";
+        } catch (NullPointerException | NumberFormatException ne) {
+            System.out.println("");
+            return null;
         } catch (Exception e) {
             Logger.getLogger(this.getClass().getName()).log(Level.SEVERE, "Error al convertir a string", e);
             return "";

@@ -40,7 +40,15 @@ public class UsuarioConverter implements Converter {
 
     @Override
     public String getAsString(FacesContext context, UIComponent component, Object value) {
-        return ((Usuario) value).toString();
+        try {
+            return ((Usuario) value).toString();
+        } catch (NullPointerException | NumberFormatException ne) {
+            System.out.println("");
+            return null;
+        } catch (Exception e) {
+            Logger.getLogger(this.getClass().getName()).log(Level.SEVERE, "Error al convertir a string", e);
+            return "";
+        }
     }
 
 }

@@ -174,17 +174,24 @@
     position: absolute;
     float: left;
     background-color: rgb(12, 18, 28);
-    
+
     font-weight: 900;
     font-size: 10px;
     color: #FFF;
     letter-spacing: 0.2em;
-    
+
     width: 200px;
     height: 50px;
     line-height: 50px;
     text-align: center;    	
     top: 0;
+}
+
+#coll-to-action ul li a{    
+    font-weight: 900;
+    font-size: 10px;
+    color: #FFF;
+    letter-spacing: 0.2em;    
 }
 
 #fist-coll{
@@ -305,6 +312,21 @@
     font-weight: 100;
 }
 
+#nombre-auto-forma{
+    width: 440px;
+    height: 45px;
+    line-height: 45px;
+    padding-left: 10px;
+    background-color: #000;
+    color: #FFF;    
+    margin-top: 20px;
+    margin-bottom: 20px;
+    font-size: .8em;
+    text-shadow: none;
+    letter-spacing: 2px;
+    font-weight: bold;
+}
+
 #body-forma{
     width: 1180px;
     height: auto;
@@ -329,27 +351,26 @@
     margin: 0 auto;
 }
 
-#nombre-auto-forma{
-    width: 440px;
-    height: 45px;
-    line-height: 45px;
-    padding-left: 10px;
-    background-color: #000;
-    color: #FFF;    
-    margin-top: 20px;
-    margin-bottom: 20px;
-    font-size: .8em;
-    text-shadow: none;
-    letter-spacing: 2px;
-    font-weight: bold;
-}
-
 #body-forma b{
     font-family: avenir_lt_std_medium,sans-serif;
     font-size: 1.2em;
     color: #393939;
     text-transform: uppercase;
     font-weight: 100;
+}
+
+#body-forma select{    
+    background: #000;
+    color: #FFF;
+    display: inline-block;
+    width: auto;
+    padding: 5px;
+    font-size: 16px;
+    line-height: 1;
+    border: 0;
+    border-radius: 0;
+    height: 34px;
+    -webkit-appearance: none;
 }
 
 #full-bottom{

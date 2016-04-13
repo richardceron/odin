@@ -19,17 +19,19 @@ import mx.riyoce.odin.sessions.AdminSessionBean;
  *
  * @author ricardo
  */
-
 @FacesConverter(value = "AgenciaConverter")
-public class AgenciaConverter implements Converter{
+public class AgenciaConverter implements Converter {
 
     @EJB
     private AdminSessionBean asb;
-    
+
     @Override
     public Object getAsObject(FacesContext context, UIComponent component, String value) {
         try {
             return asb.getAgenciaById(Long.parseLong(value));
+        } catch (NullPointerException | NumberFormatException ne) {
+            System.out.println("");
+            return null;
         } catch (Exception e) {
             Logger.getLogger(this.getClass().getName()).log(Level.SEVERE, "Error al convertir a Agencia", e);
             return null;
@@ -39,11 +41,14 @@ public class AgenciaConverter implements Converter{
     @Override
     public String getAsString(FacesContext context, UIComponent component, Object value) {
         try {
-            return ((Agencia)value).toString();
+            return ((Agencia) value).toString();
+        } catch (NullPointerException | NumberFormatException ne) {
+            System.out.println("");
+            return null;
         } catch (Exception e) {
             Logger.getLogger(this.getClass().getName()).log(Level.SEVERE, "Error al convertir a string", e);
             return "";
         }
     }
-    
+
 }

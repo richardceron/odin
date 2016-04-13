@@ -155,6 +155,28 @@ public class AdminSessionBean implements Serializable {
             return null;
         }
     }
+    
+    public List<Agencia> getAgenciasByMarca(Marca m){
+        try {
+            Query q = em.createQuery("SELECT DISTINCT la FROM Agencia la WHERE la.marca = :m ORDER BY la.nombre ASC");
+            q.setParameter("m", m);
+            return q.getResultList();
+        } catch (Exception e) {
+            Logger.getLogger(this.getClass().getName()).log(Level.SEVERE, "Error al traer las agencias por marca", e);
+            return null;
+        }
+    }
+    
+    public List<Agencia> getAgenciasByGrupo(GrupoAutomotriz g){
+        try {
+            Query q = em.createQuery("SELECT DISTINCT la FROM Agencia la WHERE la.grupo = :g ORDER BY la.nombre ASC");
+            q.setParameter("g", g);
+            return q.getResultList();
+        } catch (Exception e) {
+            Logger.getLogger(this.getClass().getName()).log(Level.SEVERE, "Error al traer las agencias por marca", e);
+            return null;
+        }
+    }
 
     /* Terminan métodos para agencias */
 
@@ -185,6 +207,17 @@ public class AdminSessionBean implements Serializable {
             return em.createQuery("SELECT DISTINCT lm FROM Marca lm ORDER BY lm.nombre ASC").getResultList();
         } catch (Exception e) {
             Logger.getLogger(this.getClass().getName()).log(Level.SEVERE, "Error al traer los ejecutivos", e);
+            return null;
+        }
+    }
+    
+    public List<Marca> getMarcasGroup(GrupoAutomotriz g) {
+        try {
+            Query q = em.createQuery("SELECT DISTINCT lm FROM Marca lm, Agencia a WHERE a.marca = lm AND a.grupo = :g ORDER BY lm.nombre ASC");
+            q.setParameter("g", g);
+            return q.getResultList();
+        } catch (Exception e) {
+            Logger.getLogger(this.getClass().getName()).log(Level.SEVERE, "Error al traer las marcas del grupo", e);
             return null;
         }
     }

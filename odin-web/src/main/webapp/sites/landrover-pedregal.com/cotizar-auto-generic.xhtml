@@ -18,6 +18,8 @@
                 <label>
                     Vehículo
                 </label>
+                
+                <div class="break"></div>
 
                 <h:selectOneMenu value="#{solicitudController.modelo}" converter="ModeloConverter">
                     <p:ajax event="change" process="@this" update="panelAutos"/>
@@ -29,14 +31,13 @@
 
                 <h:panelGroup id="panelAutos">
                     <h:selectOneMenu required="true" requiredMessage="Por favor selecciona un auto" value="#{solicitudController.autoSolicitud}" converter="AutoConverter">
+                        <f:selectItem itemValue="#{null}" itemLabel="Selecciona un auto"/>
                         <f:selectItems value="#{solicitudController.autosByModel}" var="a"
-                                       itemValue="#{a}" itemLabel="#{a.modelo.nombre} #{a.nombre} #{a.modelo.ano}"/>
+                                       itemValue="#{a}" itemLabel="#{a.nombre}"/>
                     </h:selectOneMenu>
-                </h:panelGroup>
-
-                <div id="nombre-auto-forma">
-                    #{solicitudController.autoSolicitud.modelo.nombre} #{solicitudController.autoSolicitud.nombre} #{solicitudController.autoSolicitud.modelo.ano}
-                </div>
+                </h:panelGroup>      
+                
+                <div class="break"></div>
 
                 <div style="height: 1px; background-color: #000; width: 100%;"></div>
 

@@ -40,7 +40,15 @@ public class PerfilConverter implements Converter {
 
     @Override
     public String getAsString(FacesContext context, UIComponent component, Object value) {
-        return ((Perfil) value).toString();
+        try {
+            return ((Perfil) value).toString();
+        } catch (NullPointerException | NumberFormatException ne) {
+            System.out.println("");
+            return null;
+        } catch (Exception e) {
+            Logger.getLogger(this.getClass().getName()).log(Level.SEVERE, "Error al convertir a string", e);
+            return "";
+        }        
     }
 
 }

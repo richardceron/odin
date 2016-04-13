@@ -29,6 +29,9 @@ public class AutoConverter implements Converter {
     public Object getAsObject(FacesContext context, UIComponent component, String value) {
         try {
             return asb.getAutoById(Long.parseLong(value));
+        } catch (NullPointerException | NumberFormatException ne) {
+            System.out.println("");
+            return null;
         } catch (Exception e) {
             Logger.getLogger(this.getClass().getName()).log(Level.SEVERE, "Error al convertir a Agencia", e);
             return null;
@@ -39,6 +42,9 @@ public class AutoConverter implements Converter {
     public String getAsString(FacesContext context, UIComponent component, Object value) {
         try {
             return ((Auto) value).toString();
+        } catch (NullPointerException | NumberFormatException ne) {
+            System.out.println("");
+            return null;
         } catch (Exception e) {
             Logger.getLogger(this.getClass().getName()).log(Level.SEVERE, "Error al convertir a string", e);
             return "";
