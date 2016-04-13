@@ -45,6 +45,7 @@
         <welcome-file>faces/index.xhtml</welcome-file>
     </welcome-file-list>
     
+    <!--
     <security-constraint>
         <display-name>Panel de control</display-name>
         <web-resource-collection>
@@ -118,5 +119,5 @@
     <security-role>
         <role-name>contacto_general</role-name>
     </security-role>
-    
+    -->
 </web-app>

@@ -30,7 +30,8 @@ import javax.persistence.UniqueConstraint;
  */
 @Entity
 @Table(uniqueConstraints = {
-    @UniqueConstraint(columnNames = {"EMAIL"})})
+    @UniqueConstraint(columnNames = {"EMAIL"})
+})
 public class Usuario implements Serializable {
 
     private static final long serialVersionUID = 1L;

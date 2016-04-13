@@ -137,12 +137,12 @@
     color: #898c8f;
     text-transform: uppercase;
     font-size: 12px;
-    margin-top: 80px;
+    margin-top: 30px;
 }
 
 #coll-to-action{
     position: fixed;
-    top: 200px;
+    top: 280px;
     right: 0px;
     height: 200px;
     width: 250px;
@@ -174,11 +174,16 @@
     position: absolute;
     float: left;
     background-color: rgb(12, 18, 28);
+    
+    font-weight: 900;
+    font-size: 10px;
+    color: #FFF;
+    letter-spacing: 0.2em;
+    
     width: 200px;
     height: 50px;
     line-height: 50px;
-    text-align: center;
-    color: #FFFFFF;	
+    text-align: center;    	
     top: 0;
 }
 

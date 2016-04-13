@@ -1,10 +1,79 @@
 <?xml version='1.0' encoding='UTF-8' ?>
 <!DOCTYPE composition PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <ui:composition xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
-                template="./../cpTemplate.xhtml">
+                template="./../cpTemplate.xhtml"
+                xmlns:h="http://xmlns.jcp.org/jsf/html"
+                xmlns:p="http://primefaces.org/ui"
+                xmlns:f="http://xmlns.jcp.org/jsf/core">
 
     <ui:define name="content">
-        content
+        <div class="col-lg-12">
+            <h1 class="page-header">
+                Perfiles
+            </h1>
+        </div>
+        
+        <div class="col-lg-12">
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    <h:outputText value="Crear Usuario" rendered="#{adminController.editarPerfil eq false}"/>
+                    <h:outputText value="Editar Usuario" rendered="#{adminController.editarPerfil eq true}"/>
+                </div>
+                <div class="panel-body">
+                    <div class="row">
+                        <div class="col-lg-6">
+                            <h:form role="form" prependId="false" id="formaMarca">
+                                <p:messages id="messages"/>
+                                <div class="form-group">
+                                    <label>
+                                        Nombre *
+                                    </label>
+                                    <h:inputText styleClass="form-control" required="true" requiredMessage="Nombre Requerido" value="#{adminController.perfil.nombre}"/>
+                                </div>                                
+                                
+                                <div class="form-group">
+                                    <label>
+                                        Clave *
+                                    </label>
+                                    <h:inputText styleClass="form-control" required="true" requiredMessage="Nombre Requerido" value="#{adminController.perfil.clave}"/>
+                                </div>                                                                
+
+                                <p:commandButton rendered="#{adminController.editarPerfil eq false}"
+                                                 action="#{adminController.crearPerfil}" value="Crear"
+                                                 styleClass="btn btn-primary"
+                                                 update="formaMarca, formListadoMarcas"/>
+
+                                <p:commandButton rendered="#{adminController.editarPerfil eq true}"
+                                                 action="#{adminController.actualizarPerfil}" value="Actualizar"
+                                                 styleClass="btn btn-primary"
+                                                 update="formaMarca, formListadoMarcas"/>
+
+                                <p:commandButton action="#{adminController.cancelarEdicionPerfil}" value="Cancelar"
+                                                 styleClass="btn btn-info"
+                                                 update="formaMarca, formListadoMarcas"/>
+                            </h:form>
+                        </div>
+
+                        <div class="col-lg-6">
+                            <h:form role="form" prependId="false" id="formListadoMarcas">
+                                <p:dataTable value="#{adminController.perfiles}" var="p"
+                                             rowKey="#{p.id}"
+                                             selectionMode="single" selection="#{adminController.perfil}"
+                                             paginator="true" rows="20">
+                                    <p:ajax event="rowSelect" listener="#{adminController.setEditarPerfil(true)}" update="formaMarca" />
+                                    <p:column headerText="Nombre" sortBy="#{p.nombre}" filterMatchMode="contains" filterBy="#{p.nombre}">
+                                        #{p.nombre}
+                                    </p:column>
+                                    <p:column headerText="Nombre" sortBy="#{p.clave}" filterMatchMode="contains" filterBy="#{p.clave}">
+                                        #{p.clave}
+                                    </p:column>
+                                </p:dataTable>
+                            </h:form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
     </ui:define>
 
 </ui:composition>

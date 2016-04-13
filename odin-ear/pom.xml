@@ -41,6 +41,11 @@
                             <groupId>mx.riyoce</groupId>
                             <artifactId>odin-web</artifactId>
                             <contextRoot>/w</contextRoot>
+                        </webModule>
+                        <webModule>
+                            <groupId>mx.riyoce</groupId>
+                            <artifactId>odin-cp</artifactId>
+                            <contextRoot>/cp</contextRoot>
                         </webModule>                                                                    
                     </modules>   
                 </configuration>
@@ -57,6 +62,12 @@
         <dependency>
             <groupId>mx.riyoce</groupId>
             <artifactId>odin-web</artifactId>
+            <version>1.0</version>
+            <type>war</type>
+        </dependency>
+        <dependency>
+            <groupId>mx.riyoce</groupId>
+            <artifactId>odin-cp</artifactId>
             <version>1.0</version>
             <type>war</type>
         </dependency>

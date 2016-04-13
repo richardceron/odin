@@ -1,10 +1,95 @@
 <?xml version='1.0' encoding='UTF-8' ?>
 <!DOCTYPE composition PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <ui:composition xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
-                template="./../cpTemplate.xhtml">
+                template="./../cpTemplate.xhtml"
+                xmlns:h="http://xmlns.jcp.org/jsf/html"
+                xmlns:p="http://primefaces.org/ui"
+                xmlns:f="http://xmlns.jcp.org/jsf/core">
 
     <ui:define name="content">
-        content
+        <div class="col-lg-12">
+            <h1 class="page-header">
+                Perfiles
+            </h1>
+        </div>
+
+        <div class="col-lg-12">
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    Crear Rol
+                </div>
+                <div class="panel-body">
+                    <div class="row">
+                        <div class="col-lg-6">
+                            <h:form role="form" prependId="false" id="formaMarca">
+                                <p:messages id="messages"/>
+
+                                <div class="form-group">
+                                    <label>
+                                        Usuario *
+                                    </label>
+                                    <h:selectOneMenu id="usuario" value="#{adminController.rol.usuario}" converter="UsuarioConverter"
+                                                     required="true" requiredMessage="Usuario Requerido"
+                                                     styleClass="form-control">                                        
+                                        <f:selectItems value="#{adminController.usuarios}" var="u" itemLabel="#{u.nombre}" itemValue="#{u}" />                                        
+                                    </h:selectOneMenu>
+                                </div>
+
+                                <div class="form-group">
+                                    <label>
+                                        Perfil *
+                                    </label>
+                                    <h:selectOneMenu id="perfiles" value="#{adminController.rol.perfil}" converter="PerfilConverter"
+                                                     required="true" requiredMessage="Perfil Requerido"
+                                                     styleClass="form-control">                                        
+                                        <f:selectItems value="#{adminController.perfiles}" var="p" itemLabel="#{p.nombre}" itemValue="#{p}" />                                        
+                                    </h:selectOneMenu>
+                                </div>
+
+                                <div class="form-group">
+                                    <label>
+                                        Agencia *
+                                    </label>
+                                    <h:selectOneMenu id="agencias" value="#{adminController.rol.agencia}" converter="AgenciaConverter"
+                                                     required="true" requiredMessage="Agencia Requerida"
+                                                     styleClass="form-control">                                        
+                                        <f:selectItems value="#{adminController.agencias}" var="a" itemLabel="#{a.nombre}" itemValue="#{a}" />                                        
+                                    </h:selectOneMenu>
+                                </div>
+
+                                <p:commandButton action="#{adminController.crearRol}" value="Crear"
+                                                 styleClass="btn btn-primary"
+                                                 update="formaMarca, formListadoMarcas"/>
+
+                                <p:commandButton action="#{adminController.cancelarEdicionRoles}" value="Cancelar"
+                                                 styleClass="btn btn-info"
+                                                 update="formaMarca, formListadoMarcas"/>
+                            </h:form>
+                        </div>
+
+                        <div class="col-lg-6">
+                            <h:form role="form" prependId="false" id="formListadoMarcas">
+                                <p:dataTable value="#{adminController.roles}" var="r"
+                                             paginator="true" rows="20">                                    
+                                    <p:column headerText="Usuario" sortBy="#{r.usuario.nombre}" filterMatchMode="contains" filterBy="#{r.usuario.nombre}">
+                                        #{r.usuario.nombre}
+                                    </p:column>
+                                    <p:column headerText="Agencia" sortBy="#{r.agencia.nombre}" filterMatchMode="contains" filterBy="#{r.agencia.nombre}">
+                                        #{r.agencia.nombre}
+                                    </p:column>
+                                    <p:column headerText="Perfil" sortBy="#{r.perfil.nombre}" filterMatchMode="contains" filterBy="#{r.perfil.nombre}">
+                                        #{r.perfil.nombre}
+                                    </p:column>
+                                    <p:column headerText="Eliminar" style="text-align: center;">
+                                        <p:commandLink process="@this" update="formListadoMarcas, messages" action="#{adminController.eliminarRol(r)}" value="X"/>
+                                    </p:column>
+                                </p:dataTable>
+                            </h:form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
     </ui:define>
 
 </ui:composition>

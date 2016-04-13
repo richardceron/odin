@@ -10,9 +10,120 @@
             SOLICITA UNA PRUEBA DE MANEJO
         </div>
         <div id="body-forma">
-            <h:form>
+            <h:form>                                
+
+                <p:messages/>
+
+                <label>
+                    Vehículo
+                </label>
+
+                <div id="nombre-auto-forma">
+                    #{solicitudController.autoSolicitud.modelo.nombre} #{solicitudController.autoSolicitud.nombre} #{solicitudController.autoSolicitud.modelo.ano}
+                </div>
+
+                <div style="height: 1px; background-color: #000; width: 100%;"></div>
+
+                <div class="break"></div>
+
+                <label>
+                    Introduce tu información
+                </label>
+
+                <div class="break"></div>
+
+                <div class="left-50">
+                    <b>
+                        Nombre: *
+                    </b>
+                    <br/>
+                    <h:inputText required="true" requiredMessage="Nombre Requerido" styleClass="input-form" value="#{solicitudController.solicitud.nombre}"/>                    
+
+                    <div class="break"></div>
+
+                    <b>
+                        Email: *
+                    </b>
+                    <br/>
+                    <h:inputText required="true" requiredMessage="Email Requerido"
+                                 validatorMessage="Email Invalido"
+                                 value="#{solicitudController.solicitud.email}"
+                                 styleClass="input-form">
+                        <f:validateRegex
+                            pattern="^[_A-Za-z0-9-\+]+(\.[_A-Za-z0-9-]+)*@[A-Za-z0-9-]+(\.[A-Za-z0-9]+)*(\.[A-Za-z]{2,})$" />
+                    </h:inputText>
+
+                    <div class="break"></div>
+
+                    <b>
+                        Teléfono: *
+                    </b>
+                    <br/>
+                    <h:inputText required="true" requiredMessage="Teléfono Requerido" styleClass="input-form" value="#{solicitudController.solicitud.telefono}"/> 
+
+                    <div class="break"></div>
+
+                    <b>
+                        Fecha y Hora *
+                    </b>
+                    <br/>
+                    <p:calendar locale="es" mindate="#{solicitudController.today}" value="#{solicitudController.fechaCita}" pattern="dd-MM-yyyy HH:mm" mask="true" />
+
+                    <div class="break"></div>
+
+                    <b>
+                        Acepto los terminos y conidciones
+                    </b>
+                    <br/>
+                    <h:selectBooleanCheckbox value="#{solicitudController.aceptarTerminosCondiciones}"/>
+                </div>
+
+                <div class="left-50">
+                    <b>
+                        Comentarios:
+                    </b>
+                    <br/>
+                    <h:inputTextarea styleClass="input-form-texarea" value="#{solicitudController.solicitud.comentarios}"/>
+
+                    <div class="break"></div>
+
+                    <p:commandLink update="@form" styleClass="input-form-button" action="#{solicitudController.generarSolicitudPruebaManejo(true)}" value="Enviar"/>
+
+                </div>
+
+                <div class="break"></div>
 
             </h:form>
         </div>   
+
+        <script>
+            PrimeFaces.locales['es'] = {
+                closeText: 'Cerrar',
+                prevText: 'Anterior',
+                nextText: 'Siguiente',
+                monthNames: ['Enero', 'Febrero', 'Marzo', 'Abril', 'Mayo', 'Junio', 'Julio', 'Agosto', 'Septiembre', 'Octubre', 'Noviembre', 'Diciembre'],
+                monthNamesShort: ['Ene', 'Feb', 'Mar', 'Abr', 'May', 'Jun', 'Jul', 'Ago', 'Sep', 'Oct', 'Nov', 'Dic'],
+                dayNames: ['Domingo', 'Lunes', 'Martes', 'Miércoles', 'Jueves', 'Viernes', 'Sábado'],
+                dayNamesShort: ['Dom', 'Lun', 'Mar', 'Mie', 'Jue', 'Vie', 'Sab'],
+                dayNamesMin: ['D', 'L', 'M', 'M', 'J', 'V', 'S'],
+                weekHeader: 'Semana',
+                firstDay: 1,
+                isRTL: false,
+                showMonthAfterYear: false,
+                yearSuffix: '',
+                timeOnlyTitle: 'Sólo hora',
+                timeText: 'Tiempo',
+                hourText: 'Hora',
+                minuteText: 'Minuto',
+                secondText: 'Segundo',
+                currentText: 'Fecha actual',
+                ampm: false,
+                month: 'Mes',
+                week: 'Semana',
+                day: 'Día',
+                allDayText: 'Todo el día'
+            };
+        </script>
+
     </ui:define>
 </ui:composition>

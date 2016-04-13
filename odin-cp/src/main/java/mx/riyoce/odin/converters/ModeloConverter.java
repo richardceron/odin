@@ -12,7 +12,6 @@ import javax.faces.component.UIComponent;
 import javax.faces.context.FacesContext;
 import javax.faces.convert.Converter;
 import javax.faces.convert.FacesConverter;
-import mx.riyoce.odin.entities.GrupoAutomotriz;
 import mx.riyoce.odin.entities.Modelo;
 import mx.riyoce.odin.sessions.AutosSessionBean;
 

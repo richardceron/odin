@@ -79,6 +79,8 @@ public class AdminController implements Serializable {
         grupos = asb.getGruposAutomotrices();
         agencias = asb.getAgencias();
         usuarios = asb.getUsuarios();
+        perfiles = asb.getPerfiles();
+        roles = asb.getRoles();
     }
 
     /*-- Metodos para usuarios --*/
@@ -112,6 +114,72 @@ public class AdminController implements Serializable {
     }
 
     /*-- Fin metodos para usuarios --*/
+    
+    /*-- Metodos para perfiles --*/
+    public void crearPerfil(){
+        try {
+            asb.persist(perfil);
+            cancelarEdicionPerfil();
+            FacesContext.getCurrentInstance().addMessage("", new FacesMessage(FacesMessage.SEVERITY_INFO, "Perfil creado con éxito", ""));
+        } catch (Exception e) {
+            Logger.getLogger(this.getClass().getName()).log(Level.SEVERE, "Error al crear el perfil", e);
+        }
+    }
+    
+    public void actualizarPerfil(){
+        try {
+            asb.merge(perfil);
+            cancelarEdicionPerfil();
+            FacesContext.getCurrentInstance().addMessage("", new FacesMessage(FacesMessage.SEVERITY_INFO, "Perfil actualizado con éxito", ""));
+        } catch (Exception e) {
+            Logger.getLogger(this.getClass().getName()).log(Level.SEVERE, "Error al actualizar el perfil", e);
+        }
+    }
+    
+    public void cancelarEdicionPerfil(){
+        perfil = new Perfil();
+        perfiles = asb.getPerfiles();
+        editarPerfil = false;
+    }
+    /*-- Fin metodos para perfiles --*/
+    
+    /*-- Metodos para roles --*/
+    public void crearRol(){
+        try {
+            asb.persist(rol);
+            cancelarEdicionRoles();
+            FacesContext.getCurrentInstance().addMessage("", new FacesMessage(FacesMessage.SEVERITY_INFO, "Rol creado con éxito", ""));
+        } catch (Exception e) {
+            Logger.getLogger(this.getClass().getName()).log(Level.SEVERE, "Error al crear el perfil", e);
+        }
+    }   
+    
+    public void eliminarRol(){
+        try {
+            asb.eliminarRol(rol);
+            cancelarEdicionRoles();
+            FacesContext.getCurrentInstance().addMessage("", new FacesMessage(FacesMessage.SEVERITY_INFO, "Rol eliminonado con éxito", ""));
+        } catch (Exception e) {
+            Logger.getLogger(this.getClass().getName()).log(Level.SEVERE, "Error al eliminar el rol", e);
+        }
+    }
+    
+    public void eliminarRol(Rol r){
+        try {
+            asb.eliminarRol(r);
+            cancelarEdicionRoles();
+            FacesContext.getCurrentInstance().addMessage("", new FacesMessage(FacesMessage.SEVERITY_INFO, "Rol eliminonado con éxito", ""));
+        } catch (Exception e) {
+            Logger.getLogger(this.getClass().getName()).log(Level.SEVERE, "Error al eliminar el rol", e);
+        }
+    }
+    
+    public void cancelarEdicionRoles(){
+        rol = new Rol();
+        roles = asb.getRoles();
+    }
+    /*-- Fin metodos para roles --*/
+    
  /*-- Metodos para agencias --*/
     public void crearAgencia() {
         try {

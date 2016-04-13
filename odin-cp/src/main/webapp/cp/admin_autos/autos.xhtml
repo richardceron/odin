@@ -163,7 +163,8 @@
                                 <h:panelGroup id="panelTablaAutos">
                                     <p:dataTable value="#{autosController.autos}" var="a"
                                                  rowKey="#{a.id}"
-                                                 selectionMode="single" selection="#{autosController.auto}">
+                                                 selectionMode="single" selection="#{autosController.auto}"
+                                                 paginator="true" rows="15">
                                         <p:ajax event="rowSelect" listener="#{autosController.setEditAuto(true)}" update="formaMarca" />
                                         <p:column headerText="Nombre" sortBy="#{a.nombre}" filterMatchMode="contains" filterBy="#{a.nombre}">
                                             #{a.nombre}

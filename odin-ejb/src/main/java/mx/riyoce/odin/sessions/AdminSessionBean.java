@@ -114,12 +114,12 @@ public class AdminSessionBean implements Serializable {
         }
     }
 
-    public Perfil deleteRol(long id) {
+    public void eliminarRol(Rol r) {
         try {
-            return em.find(Perfil.class, id);
+            r = em.merge(r);
+            em.remove(r);
         } catch (Exception e) {
-            Logger.getLogger(this.getClass().getName()).log(Level.SEVERE, "Error al traer el perfil por id", e);
-            return null;
+            Logger.getLogger(this.getClass().getName()).log(Level.SEVERE, "Error al eliminar el rol", e);            
         }
     }
 

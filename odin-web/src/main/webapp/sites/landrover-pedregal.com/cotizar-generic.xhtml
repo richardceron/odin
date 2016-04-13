@@ -12,12 +12,27 @@
         </div>
         <div id="body-forma">
             <h:form>                                
-                
+
                 <p:messages/>
-                
+
                 <label>
                     Vehículo
                 </label>
+
+                <h:selectOneMenu value="#{solicitudController.modelo}" converter="ModeloConverter">
+                    <p:ajax event="change" process="@this" update="panelAutos"/>
+                            <f:selectItems value="#{siteController.modelosByCurrenSiteMarca}" var="m"
+                                   itemValue="#{m}" itemLabel="#{m.nombre} #{m.ano}"/>
+                </h:selectOneMenu>
+
+                <div class="break"></div>
+
+                <h:panelGroup id="panelAutos">
+                    <h:selectOneMenu required="true" requiredMessage="Por favor selecciona un auto" value="#{solicitudController.autoSolicitud}" converter="AutoConverter">
+                        <f:selectItems value="#{solicitudController.autosByModel}" var="a"
+                                       itemValue="#{a}" itemLabel="#{a.modelo.nombre} #{a.nombre} #{a.modelo.ano}"/>
+                    </h:selectOneMenu>
+                </h:panelGroup>
 
                 <div id="nombre-auto-forma">
                     #{solicitudController.autoSolicitud.modelo.nombre} #{solicitudController.autoSolicitud.nombre} #{solicitudController.autoSolicitud.modelo.ano}
@@ -61,7 +76,7 @@
                     </b>
                     <br/>
                     <h:inputText required="true" requiredMessage="Teléfono Requerido" styleClass="input-form" value="#{solicitudController.solicitud.telefono}"/> 
-                    
+
                     <div class="break"></div>
 
                     <b>
@@ -77,11 +92,11 @@
                     </b>
                     <br/>
                     <h:inputTextarea styleClass="input-form-texarea" value="#{solicitudController.solicitud.comentarios}"/>
-                    
+
                     <div class="break"></div>
-                    
+
                     <p:commandLink update="@form" styleClass="input-form-button" action="#{solicitudController.generarSolicitudCotizacionAutosNuevos(true)}" value="Enviar"/>
-                    
+
                 </div>
 
                 <div class="break"></div>

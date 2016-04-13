@@ -26,6 +26,7 @@ import javax.jms.MessageProducer;
 import javax.jms.ObjectMessage;
 import javax.jms.Queue;
 import javax.jms.Session;
+import mx.riyoce.odin.entities.Agencia;
 import mx.riyoce.odin.entities.Auto;
 import mx.riyoce.odin.entities.Correo;
 import mx.riyoce.odin.entities.Marca;
@@ -60,6 +61,8 @@ public class SolicitudController implements Serializable {
 
     private Marca marca;
     
+    private Agencia agencia;
+    
     private Solicitud solicitud;
     private Date fechaCita;
     private long modelid;
@@ -71,6 +74,7 @@ public class SolicitudController implements Serializable {
 
     public SolicitudController() {
         solicitud = new Solicitud();
+        agencia = new Agencia();
         fechaCita = new Date();
         servicioValet = false;
         aceptarTerminosCondiciones = false;
@@ -78,16 +82,16 @@ public class SolicitudController implements Serializable {
     
     public void passModelo(){
         this.modelo = asb.getModeloById(modelid);
-    }
-    
-    public void passAuto(){
-        this.modelo = asb.getModeloById(modelid);
-    }
+    }       
 
-    public void generarSolicitudCotizacionAutosNuevos() {
+    public void generarSolicitudCotizacionAutosNuevos(boolean forCurrentAgencia) {
         try {
             if (aceptarTerminosCondiciones) {
-                solicitud.setAgencia(sc.getAgencia());
+                if (forCurrentAgencia) {
+                    solicitud.setAgencia(sc.getAgencia());
+                } else{
+                    solicitud.setAgencia(agencia);
+                }
                 solicitud.setTipo(ssb.getTiposolicitudByClave("coti_autos_nuevos"));
                 solicitud.setFecha(new Date());
 
@@ -116,19 +120,66 @@ public class SolicitudController implements Serializable {
         }
     }
 
-    public void generarSolicitudCitaServicio(boolean placas, boolean valet) {
+    public void generarSolicitudPruebaManejo(boolean forCurrentAgencia) {
         try {
             if (aceptarTerminosCondiciones) {
+                if (forCurrentAgencia) {
+                    solicitud.setAgencia(sc.getAgencia());
+                } else{
+                    solicitud.setAgencia(agencia);
+                }
+                solicitud.setTipo(ssb.getTiposolicitudByClave("prueba_manejo"));
+                solicitud.setFecha(new Date());
+
+                StringBuilder sb = new StringBuilder();
+
+                sb.append("<b>Auto: </b>");
+                String name_auto = autoSolicitud.getModelo().getNombre()+" "+autoSolicitud.getNombre()+" "+autoSolicitud.getModelo().getAno();
+                sb.append(name_auto);
+                sb.append("<br/>");
+
+                SimpleDateFormat sdf = new SimpleDateFormat("dd-MM-yyyy hh:mm");
+
+                sb.append("<b>Fecha: </b>");
+                sb.append(sdf.format(fechaCita));
+                sb.append("<br/>");                
+
+                solicitud.setDescripcionSolicitud(sb.toString());
+
+                List<Correo> lm = ssb.crearSolicitud(solicitud);
+
+                for (Correo m : lm) {
+                    sendJMSMessageToMensajesQueue(m);
+                }
+                clearInfoSolicitud();
+                FacesContext.getCurrentInstance().addMessage("", new FacesMessage(FacesMessage.SEVERITY_INFO, "¡ Gracias por tu información ! Nos pondremos en contacto.", null));
+            } else {
+                FacesContext.getCurrentInstance().addMessage("", new FacesMessage(FacesMessage.SEVERITY_WARN, "Debes aceptar los terminos y condiciones", null));
+            }
+        } catch (Exception e) {
+            Logger.getLogger(this.getClass().getName()).log(Level.SEVERE, "Error al generar la solicitud de cotizacion", e);
+        }
+    }
+    
+    public void generarSolicitudCitaServicio(boolean placas, boolean valet, boolean forCurrentAgencia) {
+        try {
+            if (aceptarTerminosCondiciones) {
+                if (forCurrentAgencia) {
+                    solicitud.setAgencia(sc.getAgencia());
+                } else{
+                    solicitud.setAgencia(agencia);
+                }
                 solicitud.setTipo(ssb.getTiposolicitudByClave("cita_servicio"));
                 solicitud.setFecha(new Date());
 
                 StringBuilder sb = new StringBuilder();
 
                 sb.append("<b>Auto: </b>");
-                sb.append(autoSolicitud.getNombre());
+                String name_auto = autoSolicitud.getModelo().getNombre()+" "+autoSolicitud.getNombre()+" "+autoSolicitud.getModelo().getAno();
+                sb.append(name_auto);
                 sb.append("<br/>");
 
-                SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy hh:mm");
+                SimpleDateFormat sdf = new SimpleDateFormat("dd-MM-yyyy hh:mm");
 
                 sb.append("<b>Fecha: </b>");
                 sb.append(sdf.format(fechaCita));
@@ -163,9 +214,14 @@ public class SolicitudController implements Serializable {
         }
     }
     
-    public void generarSolicitudContactoGeneral() {
+    public void generarSolicitudContactoGeneral(boolean forCurrentAgencia) {
         try {
             if (aceptarTerminosCondiciones) {
+                if (forCurrentAgencia) {
+                    solicitud.setAgencia(sc.getAgencia());
+                } else{
+                    solicitud.setAgencia(agencia);
+                }
                 solicitud.setTipo(ssb.getTiposolicitudByClave("contacto_general"));
                 solicitud.setFecha(new Date());
                                                                
@@ -194,6 +250,7 @@ public class SolicitudController implements Serializable {
         autoSolicitud = new Auto();
         servicioValet = false;
         aceptarTerminosCondiciones = false;
+        agencia = new Agencia();
     }
     
     public List<Marca> getAllMarcas(){
@@ -369,6 +426,20 @@ public class SolicitudController implements Serializable {
      */
     public void setMarca(Marca marca) {
         this.marca = marca;
+    }
+
+    /**
+     * @return the agencia
+     */
+    public Agencia getAgencia() {
+        return agencia;
+    }
+
+    /**
+     * @param agencia the agencia to set
+     */
+    public void setAgencia(Agencia agencia) {
+        this.agencia = agencia;
     }
 
 }
