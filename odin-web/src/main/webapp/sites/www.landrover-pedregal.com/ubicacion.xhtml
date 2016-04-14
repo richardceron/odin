@@ -24,17 +24,41 @@
             <div id="map"></div>            
         </div>   
 
+        <input type="hidden" id="agencia_name" value="#{siteController.agencia.nombre}" />
+        <input type="hidden" id="agencia_dir" value="#{siteController.agencia.direccion}" />
+
         <script>
+
             function initMap() {
                 var mapDiv = document.getElementById('map');
                 var map = new google.maps.Map(mapDiv, {
                     center: {lat: #{siteController.agencia.latitud}, lng: #{siteController.agencia.longitud}},
-                    zoom: 9
+                    zoom: 17
                 });
+                var contentString = "<b>";
+                contentString += document.getElementById("agencia_name").value;
+                contentString += "</b>";
+                contentString += "<br/>";
+                contentString += document.getElementById("agencia_dir").value;
+
+                var infowindow = new google.maps.InfoWindow({
+                    content: contentString
+                });
+
+
+                var marker = new google.maps.Marker({
+                    position: {lat: #{siteController.agencia.latitud}, lng: #{siteController.agencia.longitud}},
+                    map: map
+                });
+
+                marker.addListener('click', function () {
+                    infowindow.open(map, marker);
+                });
+
+
             }
         </script>
-        <script src="https://maps.googleapis.com/maps/api/js?callback=initMap"
-        async defer></script>
+        <script src="https://maps.googleapis.com/maps/api/js?callback=initMap"></script>
 
     </ui:define>
 </ui:composition>

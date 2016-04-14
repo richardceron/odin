@@ -90,7 +90,7 @@ public class AdminController implements Serializable {
                 asb.persist(usuario);
                 cancelarEdicionUsuario();
                 FacesContext.getCurrentInstance().addMessage("", new FacesMessage(FacesMessage.SEVERITY_INFO, "Usuario creado con éxito", ""));
-            } else{
+            } else {
                 FacesContext.getCurrentInstance().addMessage("", new FacesMessage(FacesMessage.SEVERITY_INFO, "Ya existe un usuario con ese correo", ""));
             }
         } catch (Exception e) {
@@ -110,13 +110,13 @@ public class AdminController implements Serializable {
 
     public void cancelarEdicionUsuario() {
         usuario = new Usuario();
+        usuarios = asb.getUsuarios();
         editarUsuario = false;
     }
 
     /*-- Fin metodos para usuarios --*/
-    
     /*-- Metodos para perfiles --*/
-    public void crearPerfil(){
+    public void crearPerfil() {
         try {
             asb.persist(perfil);
             cancelarEdicionPerfil();
@@ -125,8 +125,8 @@ public class AdminController implements Serializable {
             Logger.getLogger(this.getClass().getName()).log(Level.SEVERE, "Error al crear el perfil", e);
         }
     }
-    
-    public void actualizarPerfil(){
+
+    public void actualizarPerfil() {
         try {
             asb.merge(perfil);
             cancelarEdicionPerfil();
@@ -135,26 +135,29 @@ public class AdminController implements Serializable {
             Logger.getLogger(this.getClass().getName()).log(Level.SEVERE, "Error al actualizar el perfil", e);
         }
     }
-    
-    public void cancelarEdicionPerfil(){
+
+    public void cancelarEdicionPerfil() {
         perfil = new Perfil();
         perfiles = asb.getPerfiles();
         editarPerfil = false;
     }
     /*-- Fin metodos para perfiles --*/
-    
+
     /*-- Metodos para roles --*/
-    public void crearRol(){
+    public void crearRol() {
         try {
-            asb.persist(rol);
-            cancelarEdicionRoles();
-            FacesContext.getCurrentInstance().addMessage("", new FacesMessage(FacesMessage.SEVERITY_INFO, "Rol creado con éxito", ""));
+            if (asb.crearRol(rol)) {                
+                cancelarEdicionRoles();
+                FacesContext.getCurrentInstance().addMessage("", new FacesMessage(FacesMessage.SEVERITY_INFO, "Rol creado con éxito", ""));
+            } else{
+                FacesContext.getCurrentInstance().addMessage("", new FacesMessage(FacesMessage.SEVERITY_WARN, "Ese rol ya existe", ""));
+            }
         } catch (Exception e) {
             Logger.getLogger(this.getClass().getName()).log(Level.SEVERE, "Error al crear el perfil", e);
         }
-    }   
-    
-    public void eliminarRol(){
+    }
+
+    public void eliminarRol() {
         try {
             asb.eliminarRol(rol);
             cancelarEdicionRoles();
@@ -163,8 +166,8 @@ public class AdminController implements Serializable {
             Logger.getLogger(this.getClass().getName()).log(Level.SEVERE, "Error al eliminar el rol", e);
         }
     }
-    
-    public void eliminarRol(Rol r){
+
+    public void eliminarRol(Rol r) {
         try {
             asb.eliminarRol(r);
             cancelarEdicionRoles();
@@ -173,14 +176,14 @@ public class AdminController implements Serializable {
             Logger.getLogger(this.getClass().getName()).log(Level.SEVERE, "Error al eliminar el rol", e);
         }
     }
-    
-    public void cancelarEdicionRoles(){
+
+    public void cancelarEdicionRoles() {
         rol = new Rol();
         roles = asb.getRoles();
     }
     /*-- Fin metodos para roles --*/
-    
- /*-- Metodos para agencias --*/
+
+    /*-- Metodos para agencias --*/
     public void crearAgencia() {
         try {
             asb.persist(agencia);
@@ -238,7 +241,7 @@ public class AdminController implements Serializable {
     }
 
     /*-- Fin metodos para agencias --*/
- /*-- Metodos para grupos --*/
+    /*-- Metodos para grupos --*/
     public void crearGrupoAutomotriz() {
         try {
             asb.persist(grupo);
@@ -285,7 +288,7 @@ public class AdminController implements Serializable {
     }
 
     /*-- Fin metodos para grupos --*/
- /*-- Metodos para marcas --*/
+    /*-- Metodos para marcas --*/
     public void crearMarca() {
         try {
             asb.persist(marca);

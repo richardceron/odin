@@ -117,7 +117,7 @@ public class EmailHelper {
             sb.append("<br/>");
             sb.append("<br/>");
             
-            sb.append("<img src=\"http://picacho.net/templates/picacho/resources/images/logo-picacho.png\" style=\"width: 250px; height: auto\" />");
+            sb.append("<img src=\"http://www.picacho.net/templates/picacho/resources/images/logo-picacho.png\" style=\"width: 250px; height: auto\" />");
             
             m.setCuerpo(sb.toString());
             

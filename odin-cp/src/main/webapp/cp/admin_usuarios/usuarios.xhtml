@@ -88,7 +88,7 @@
                             <h:form role="form" prependId="false" id="formListadoMarcas">
                                 <p:dataTable value="#{adminController.usuarios}" var="u"
                                              rowKey="#{u.id}"
-                                             selectionMode="single" selection="#{adminController.marca}"
+                                             selectionMode="single" selection="#{adminController.usuario}"
                                              paginator="true" rows="20">
                                     <p:ajax event="rowSelect" listener="#{adminController.setEditarUsuario(true)}" update="formaMarca" />
                                     <p:column headerText="Nombre" sortBy="#{u.nombre}" filterMatchMode="contains" filterBy="#{u.nombre}">

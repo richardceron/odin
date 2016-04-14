@@ -105,6 +105,19 @@ public class AdminSessionBean implements Serializable {
     /* Terminan métodos para perfiles */
 
     /* Inician métodos para roles */
+    public boolean crearRol(Rol r){
+        boolean flag = false;
+        try {
+            if (!checkIfRolExist(r)) {
+                em.persist(r);
+                flag = true;
+            }
+        } catch (Exception e) {
+            Logger.getLogger(this.getClass().getName()).log(Level.SEVERE, "Error al tcrear el rol", e);
+        }
+        return flag;
+    }
+    
     public List<Rol> getRoles() {
         try {
             return em.createQuery("SELECT DISTINCT lr FROM Rol lr ORDER BY lr.agencia.nombre ASC").getResultList();
@@ -114,12 +127,32 @@ public class AdminSessionBean implements Serializable {
         }
     }
 
+    public boolean checkIfRolExist(Rol r) {
+        boolean flag = true;
+        try {
+            Query q = em.createQuery("SELECT r FROM Rol r WHERE r.usuario = :u AND r.perfil = :p AND r.agencia = :a");
+            q.setMaxResults(1);
+            q.setParameter("u", r.getUsuario());
+            q.setParameter("p", r.getPerfil());
+            q.setParameter("a", r.getAgencia());
+            Rol rol_from_db = (Rol) q.getSingleResult();
+            if (rol_from_db == null) {
+                flag = false;
+            }
+        } catch (NoResultException nre) {
+            flag = false;
+        } catch (Exception e) {
+            Logger.getLogger(getClass().getName()).log(Level.SEVERE, "Error al revisar si existe el rol", e);
+        }
+        return flag;
+    }
+
     public void eliminarRol(Rol r) {
         try {
             r = em.merge(r);
             em.remove(r);
         } catch (Exception e) {
-            Logger.getLogger(this.getClass().getName()).log(Level.SEVERE, "Error al eliminar el rol", e);            
+            Logger.getLogger(this.getClass().getName()).log(Level.SEVERE, "Error al eliminar el rol", e);
         }
     }
 
@@ -155,8 +188,8 @@ public class AdminSessionBean implements Serializable {
             return null;
         }
     }
-    
-    public List<Agencia> getAgenciasByMarca(Marca m){
+
+    public List<Agencia> getAgenciasByMarca(Marca m) {
         try {
             Query q = em.createQuery("SELECT DISTINCT la FROM Agencia la WHERE la.marca = :m ORDER BY la.nombre ASC");
             q.setParameter("m", m);
@@ -166,8 +199,8 @@ public class AdminSessionBean implements Serializable {
             return null;
         }
     }
-    
-    public List<Agencia> getAgenciasByGrupo(GrupoAutomotriz g){
+
+    public List<Agencia> getAgenciasByGrupo(GrupoAutomotriz g) {
         try {
             Query q = em.createQuery("SELECT DISTINCT la FROM Agencia la WHERE la.grupo = :g ORDER BY la.nombre ASC");
             q.setParameter("g", g);
@@ -210,7 +243,7 @@ public class AdminSessionBean implements Serializable {
             return null;
         }
     }
-    
+
     public List<Marca> getMarcasGroup(GrupoAutomotriz g) {
         try {
             Query q = em.createQuery("SELECT DISTINCT lm FROM Marca lm, Agencia a WHERE a.marca = lm AND a.grupo = :g ORDER BY lm.nombre ASC");

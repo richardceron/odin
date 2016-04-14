@@ -1,8 +1,66 @@
-<html>
-    <head>
-        <meta http-equiv="refresh" content="0; url=http://picacho.net" />
-    </head>
-    <body>
-        Picacho
-    </body>
-</html>
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE composition PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+                template="/templates/picacho/picachoTemplate.xhtml">
+
+    <ui:define name="headers">
+        <link rel="stylesheet" href="#{facesContext.externalContext.requestContextPath}/templates/picacho/resources/css/slider/default/default.css" type="text/css" media="screen" />
+        <link rel="stylesheet" href="#{facesContext.externalContext.requestContextPath}/templates/picacho/resources/css/slider/nivo-slider.css" type="text/css" media="screen" />
+
+        <script type="text/javascript" src="#{facesContext.externalContext.requestContextPath}/templates/picacho/resources/js/slider/jquery.nivo.slider.js"></script>
+
+        <style>
+            #content{
+                width: 100%;
+                margin: 0px;
+                padding: 0px;
+            }
+            .slider-wrapper { 
+                width: 100%;                                
+            }
+        </style>
+    </ui:define>
+
+    <ui:define name="content">
+        <div class="slider-wrapper theme-default">
+            <div id="slider" class="nivoSlider">
+                <img src="#{facesContext.externalContext.requestContextPath}/templates/picacho/resources/images/slide/01.jpg" alt="Grupo Picacho" data-thumb="#{facesContext.externalContext.requestContextPath}/resources/images/slide/01.jpg"/>
+                <img src="#{facesContext.externalContext.requestContextPath}/templates/picacho/resources/images/slide/02.jpg" alt="Ford Picacho" data-thumb="#{facesContext.externalContext.requestContextPath}/resources/images/slide/02.jpg"/>
+                <img src="#{facesContext.externalContext.requestContextPath}/templates/picacho/resources/images/slide/03.jpg" alt="Promociones Picacho" data-thumb="#{facesContext.externalContext.requestContextPath}/resources/images/slide/03.jpg"/>
+                <img src="#{facesContext.externalContext.requestContextPath}/templates/picacho/resources/images/slide/04.jpg" alt="Promociones Picacho" data-thumb="#{facesContext.externalContext.requestContextPath}/resources/images/slide/04.jpg"/>
+                <img src="#{facesContext.externalContext.requestContextPath}/templates/picacho/resources/images/slide/05.jpg" alt="Promociones Picacho" data-thumb="#{facesContext.externalContext.requestContextPath}/resources/images/slide/05.jpg"/>
+                <img src="#{facesContext.externalContext.requestContextPath}/templates/picacho/resources/images/slide/06.jpg" alt="Mazda Picacho" data-thumb="#{facesContext.externalContext.requestContextPath}/resources/images/slide/06.jpg"/>
+                <img src="#{facesContext.externalContext.requestContextPath}/templates/picacho/resources/images/slide/08.jpg" alt="Jaguar Pedregal" data-thumb="#{facesContext.externalContext.requestContextPath}/resources/images/slide/08.jpg"/>
+                <img src="#{facesContext.externalContext.requestContextPath}/templates/picacho/resources/images/slide/09.jpg" alt="Land Rover Pedregal" data-thumb="#{facesContext.externalContext.requestContextPath}/resources/images/slide/09.jpg"/>
+            </div> 
+        </div>
+
+        <div id="content-marcas">
+            <a href="http://fordpicacho.com.mx/" target="_blank">
+                <img src="#{facesContext.externalContext.requestContextPath}/templates/picacho/resources/images/logo-ford.png" alt="Ford Picacho" />
+            </a>
+            <a href="http://lincolnpicacho.mx/" target="_blank">
+                <img src="#{facesContext.externalContext.requestContextPath}/templates/picacho/resources/images/logo-lincoln.png" alt="Lincoln Picacho" />
+            </a>
+            <a href="http://www.mazdapicacho.com.mx/" target="_blank">
+                <img src="#{facesContext.externalContext.requestContextPath}/templates/picacho/resources/images/logo-mazda.png" alt="Mazda Picacho" />
+            </a>
+            <a href="http://www.jaguar-pedregal.com/" target="_blank">
+                <img src="#{facesContext.externalContext.requestContextPath}/templates/picacho/resources/images/logo-jaguar.png" alt="Jaguar Pedregal" />
+            </a>
+            <a href="http://www.landrover-pedregal.com/" target="_blank">
+                <img src="#{facesContext.externalContext.requestContextPath}/templates/picacho/resources/images/logo-landrover.png" alt="Land Rover Pedregal" />
+            </a>
+            <a href="http://fawpicacho.com.mx/" target="_blank">
+                <img src="#{facesContext.externalContext.requestContextPath}/templates/picacho/resources/images/logo-faw.png" alt="Faw Picacho"/>
+            </a>
+        </div>
+
+        <script>
+            $(window).load(function () {
+                $('#slider').nivoSlider();
+            });
+        </script>
+    </ui:define>
+
+</ui:composition>
