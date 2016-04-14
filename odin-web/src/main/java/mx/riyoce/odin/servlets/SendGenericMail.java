@@ -69,17 +69,18 @@ public class SendGenericMail extends HttpServlet {
             String clave = request.getParameter("clave");
 
             String[] emails = props.getProperty(clave).split(",");
-            
-            Collection<Part> files = request.getParts();
             List<Attachment> attachments = new LinkedList<>();
-                        
 
-            for (Part file : files) {
-                Attachment a = new Attachment();
-                a.setFilename(file.getSubmittedFileName());
-                a.setMime(file.getContentType());
-                a.setContent(IOUtils.toByteArray(file.getInputStream()));
-                attachments.add(a);
+            for (Part file : request.getParts()) {                
+                String fileName = getFileName(file);                
+                if (!fileName.equals("")) {
+                    Attachment a = new Attachment();
+                    a.setFilename(fileName);
+                    System.out.println(file.getContentType());
+                    a.setMime(file.getContentType());
+                    a.setContent(IOUtils.toByteArray(file.getInputStream()));
+                    attachments.add(a);
+                }                                                                               
             }
 
             StringBuilder sb = new StringBuilder();
@@ -93,39 +94,40 @@ public class SendGenericMail extends HttpServlet {
             sb.append("<br/>");
 
             Map params = request.getParameterMap();
-            Iterator i = params.keySet().iterator();            
+            Iterator i = params.keySet().iterator();
 
             while (i.hasNext()) {
                 String key = (String) i.next();
                 if (key.contains("data_")) {
                     String value = ((String[]) params.get(key))[0];
                     sb.append("<b>");
-                    sb.append(key.replace("data_", ""));                    
+                    sb.append(key.replace("data_", ""));
                     sb.append(":</b> ");
                     sb.append(value);
                     sb.append("<br/>");
-                }                                             
-            }       
-            
+                }
+            }
+
             for (String email : emails) {
                 Correo m = new Correo();
+                m.setType("text/html");
                 m.setFecha(new Date());
                 m.setAcerca(request.getParameter("acerca"));
-                m.setNombreDe("Alertas "+request.getParameter("name_agencia"));
+                m.setNombreDe("Alertas " + request.getParameter("name_agencia"));
                 m.setMailDe("noreply@picacho.com.mx");
-                
-                m.setNombrePara("Ejecutivo "+request.getParameter("name_agencia"));
+
+                m.setNombrePara("Ejecutivo " + request.getParameter("name_agencia"));
                 m.setMailPara(email);
-                
+
                 m.setCuerpo(sb.toString());
-                
+
                 m.setAttachments(attachments);
-                
+
                 sendJMSMessageToMensajesQueue(m);
             }
-            
+
             response.sendRedirect("gracias-por-tu-informacion.xhtml");
-            
+
         } catch (IOException | ServletException | JMSException e) {
             Logger.getLogger(this.getClass().getName()).log(Level.SEVERE, "Error al enviar el mail generico", e);
         }
@@ -169,6 +171,18 @@ public class SendGenericMail extends HttpServlet {
     public String getServletInfo() {
         return "Short description";
     }// </editor-fold>
+
+    private String getFileName(Part part) {
+        String contentDisp = part.getHeader("content-disposition");
+        System.out.println("content-disposition header= " + contentDisp);
+        String[] tokens = contentDisp.split(";");
+        for (String token : tokens) {
+            if (token.trim().startsWith("filename")) {
+                return token.substring(token.indexOf("=") + 2, token.length() - 1);
+            }
+        }
+        return "";
+    }
 
     private Message createJMSMessageForjmsMensajesQueue(Session session, Object messageData) throws JMSException {
         // TODO create and populate message to send

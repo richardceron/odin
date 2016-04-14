@@ -75,7 +75,7 @@
         </div>
 
         <div id="opciones-modelo">
-            <a>
+            <a href="#{facesContext.externalContext.requestContextPath}/templates/landrover/resources/fichas/#{solicitudController.modelo.id}.pdf" target="_Blank">
                 <img src="http://newdiscoverysport.landrover-mexico.com/static/images/content/readytogo/brochure.png"/>
                 <div class="break"></div>
                 DESCARGAR FICHA TÉCNICA                                
@@ -116,7 +116,12 @@
                         <div class="break"></div>
 
                         <ui:repeat value="#{a.specs}" var="s">
-                            #{s.nombre}
+                            <span>
+                                #{s.nombre}
+                            </span>
+                            #{s.description}
+                            
+                            <div class="break"></div>
                         </ui:repeat>
 
                         <div class="break"></div>

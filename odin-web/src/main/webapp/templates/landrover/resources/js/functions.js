@@ -22,6 +22,17 @@ function adjustMenu() {
     }
 }
 
+function showMenu() {
+    if ($("#menu").css("display") === "none") {
+        $('#menu').slideToggle();
+    } else {
+        $("#contentmodelos").hide("fast", function () {
+            $(".modelo").css("opacity", "0");
+        });
+        $('#menu').slideToggle();
+    }
+}
+
 function showModelos() {
     if ($("#contentmodelos").css("display") === "none") {
         $("#contentmodelos").show("slow", function () {

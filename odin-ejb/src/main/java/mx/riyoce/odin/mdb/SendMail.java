@@ -94,14 +94,12 @@ public class SendMail implements MessageListener {
                 transport.close();
             }
 
-        } catch (JMSException jms) {
-            System.out.println(jms.getMessage());
+        } catch (JMSException | UnsupportedEncodingException jms) {
+            Logger.getLogger(SendMail.class.getName()).log(Level.SEVERE, "Error al enviar el mail", jms);
         } catch (javax.mail.NoSuchProviderException nsp) {
-            System.out.println(nsp.getMessage());
+            Logger.getLogger(SendMail.class.getName()).log(Level.SEVERE, "Error al enviar el mail", nsp);
         } catch (javax.mail.MessagingException me) {
-            System.out.println(me.getMessage());
-        } catch (UnsupportedEncodingException ex) {
-            Logger.getLogger(SendMail.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(SendMail.class.getName()).log(Level.SEVERE, "Error al enviar el mail", me);
         }
     }
 }

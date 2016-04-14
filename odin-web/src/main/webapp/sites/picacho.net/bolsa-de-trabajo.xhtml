@@ -14,19 +14,19 @@
                 <input type="hidden" name="acerca" value="Bolsa de trabajo"/>
                 <input type="hidden" name="name_agencia" value="#{siteController.agencia.nombre}"/>
                 
-                Nombre <input type="text" name="data_nombre" required="true"/>
+                Nombre <input type="text" name="data_nombre" required="true"/>                
+                
+                Email <input type="email" name="data_email" required="true"/>                
+                
+                Teléfono <input type="tel" name="data_telefono" required="true"/>                                            
+                
+                Curriculum <input type="file" name="files[]" required="true" multiple="true"/>
+                <br/>
                 <br/>
                 
-                Email <input type="email" name="data_email" required="true"/>
+                Comentarios
                 <br/>
-                
-                Email <input type="tel" name="data_telefono" required="true"/>
-                <br/>                               
-                
-                Curriculum <input type="file" name="files[]" required="true"/>
-                <br/>
-                
-                Comentarios <input type="text" name="data_comentarios" required="true"/>
+                <textarea name="data_comentarios" required="true"></textarea>
                 <br/>
                 <br/>
                 

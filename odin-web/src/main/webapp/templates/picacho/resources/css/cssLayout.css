@@ -105,7 +105,7 @@
 
 #menu{
     height: 40px;
-    width: 800px;
+    width: 900px;
     float: right;    
 }
 
@@ -121,8 +121,8 @@
     float: left;
     height: 40px;
     line-height: 40px;
-    padding-left: 10px;
-    padding-right: 10px;    
+    padding-left: 5px;
+    padding-right: 5px;    
 }
 
 #menu ul li{
@@ -138,16 +138,16 @@
 }
 
 #menu ul li a{
-	display: block;
-	width: 100%;
-	box-sizing: border-box;	
-	padding-left: 10px;
-	border-bottom: #000 solid 1px;
-	color: #636363!important;
+    display: block;
+    width: 100%;
+    box-sizing: border-box;	
+    padding-left: 10px;
+    border-bottom: #000 solid 1px;
+    color: #636363!important;
 }
 
 #menu ul li a:hover{
-	color: #1e376d!important;
+    color: #1e376d!important;
 }
 
 #menu ul span, #menu ul a{
@@ -229,7 +229,7 @@
     display: block;
     font-weight: bold;
     font-size: 16px;
-   
+
 }
 
 .bottom-shortcut-title-line{
@@ -268,40 +268,40 @@
 }
 
 #quienes-somos-info, #quienes-somos-forma{
-	float: left;
-	padding: 10px;
-	height: auto;
-	box-sizing: border-box;
+    float: left;
+    padding: 10px;
+    height: auto;
+    box-sizing: border-box;
 }
 
 #quienes-somos-info{
-	width: 70%;	
+    width: 70%;	
 }
 
 #quienes-somos-forma{
-	width: 30%;	
+    width: 30%;	
 }
 
 
 
 .sepOrange {
-	width:815px;
-	height:2px;
-	background-color:#0069aa;
-	margin:7px 0px 8px 0px;
+    width:815px;
+    height:2px;
+    background-color:#0069aa;
+    margin:7px 0px 8px 0px;
 
 }
 
 
 
 li.adentro {
-	list-style-type:circle;	
-	margin-left:35px;
+    list-style-type:circle;	
+    margin-left:35px;
 }
 
 .ttex {
-	margin-left:18px;
-	
+    margin-left:18px;
+
 }
 
 

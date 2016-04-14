@@ -10,7 +10,17 @@
     </rule> 
     
     <rule enabled="true">
+        <from>^/faces/sites/www\.landrover-pedregal\.com/(.*)</from>
+        <to last="true">/faces/sites/%{server-name}/$1</to>
+    </rule> 
+    
+    <rule enabled="true">
         <from>^/faces/sites/picacho\.net/(.*)</from>
+        <to last="true">/faces/sites/%{server-name}/$1</to>
+    </rule> 
+    
+    <rule enabled="true">
+        <from>^/faces/sites/www\.picacho\.net/(.*)</from>
         <to last="true">/faces/sites/%{server-name}/$1</to>
     </rule> 
     

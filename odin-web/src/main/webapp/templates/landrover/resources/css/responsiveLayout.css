@@ -22,6 +22,7 @@ and open the template in the editor.
     #content-shorcuts-menu{
         width: 100%;
         height: auto;
+        overflow: auto;
         float: none;
         clear: both;
     }
@@ -42,17 +43,25 @@ and open the template in the editor.
         line-height: 25px;
     }
 
+    #menu-bar-res{
+        display: block;
+    }
+
     #menu{
         display: none;
     }
 
     #contentmodelos {
-        top: 210px;
+        top: 281px;
     }
 
     .modelo {
         width: 100%;
         clear: both;
+    }
+
+    .modelo a {
+        font-size: 10px;
     }
 
     .modelo img {
@@ -62,6 +71,122 @@ and open the template in the editor.
 
     #coll-to-action{
         display: none;
+    }
+
+    #opciones-modelo{        
+        height: auto;        
+    }
+
+    #opciones-modelo a{
+        width: calc(50% - 1px);     
+        height: 90px;
+        padding: 0px;
+        padding-top: 10px;
+        font-size: 12px;
+        border-bottom: 1px solid #dcdbd8;
+    }
+
+    #opciones-modelo a img{
+        width: 30px;
+        height: auto;    
+    }
+
+    #opciones-modelo a .break{    
+        height: 5px;    
+    }
+
+    #content-variaciones{
+        display: block;
+        height: auto;
+        overflow: auto;
+        width: 100%;        
+        background-color: #0b121c;
+    }
+
+    .variacion{
+        width: 100%;
+        float: none;
+        clear: both;
+        height: auto;            
+        padding-left: 0px;
+    }
+
+    .variacion b{
+        text-transform: uppercase;
+    }
+
+    .variacion a{
+        display: block!important;
+        width: 100%!important;
+        height: 20px!important;
+        line-height: 20px!important;
+        clear: both!important;
+        letter-spacing: .12em!important;
+        color: #FFF!important;
+        text-decoration: none!important;
+        font-size: 12px!important;
+    }
+
+    #title-forma{
+        width: 100%;
+        height: 100px;
+        line-height: 100px;
+        text-align: center;
+        text-transform: uppercase;
+        letter-spacing: 4px;
+        margin: 0;        
+        color: #fff;
+        font-size: 14px;
+        font-weight: 100;
+    }
+
+    #body-forma{
+        width: 100%;
+        margin: 0;
+        padding: 5px;
+    }
+
+    #nombre-auto-forma{
+        width: 100%;
+        height: 45px;
+        line-height: 45px;
+    }
+
+
+    #body-forma label{
+        font-family: avenir_lt_std_heavy, sans-serif;
+        font-size: 1.5em;
+        color: #393939;
+        font-weight: 400;
+    }
+
+    #body-forma form{
+        width: 100%;
+        height: auto;
+        overflow: auto;
+        margin: 0 auto;
+    }
+
+    #body-forma b{
+        font-family: avenir_lt_std_medium,sans-serif;
+        font-size: 1.2em;
+        color: #393939;
+        text-transform: uppercase;
+        font-weight: 100;
+    }
+
+    #body-forma select{    
+        background: #000;
+        color: #FFF;
+        display: inline-block;
+        width: auto;
+        padding: 5px;
+        font-size: 16px;
+        line-height: 1;
+        border: 0;
+        border-radius: 0;
+        height: 34px;
+        -webkit-appearance: none;
     }
 
     #full-bottom{
@@ -93,6 +218,54 @@ and open the template in the editor.
         text-align: center;
         height: 20px;
         line-height: 20px;
+    }
+
+    .input-form{
+        width: 90%;
+        height: 40px;
+        border: none;
+        box-shadow: none;
+        padding: 5px;
+    }
+
+    .input-form-texarea{
+        width: 90%;
+        height: 140px;
+        border: none;
+        box-shadow: none;
+        padding: 5px;
+        resize: none;
+    }
+
+    .input-form-button{
+        display: inline-block!important;
+        background: #eaeaea!important;
+        border: #000 solid 1px!important;
+        text-transform: uppercase!important;
+        text-shadow: none!important;
+        box-shadow: none!important;
+        text-decoration: none!important;
+        font-size: .8em!important;
+        font-family: land_rover_web_bold,sans-serif!important;
+        height: 44px!important;
+        line-height: 44px!important;
+        padding-left: 30px!important;
+        padding-right: 30px!important;
+        color: #000!important;
+    }
+
+    .no-show-mobile{
+        display: none!important;
+    }
+    
+    .show-mobile{
+        display: block!important;
+    }
+    
+    .left-50{
+        width: 100%;
+        float: none;
+        clear: both;
     }
 }
 

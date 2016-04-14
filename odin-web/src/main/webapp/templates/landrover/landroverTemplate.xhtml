@@ -46,6 +46,10 @@
                     </a>
                 </div>
 
+                <div id="menu-bar-res">
+                    <div id="menu-icon" onclick="showMenu();"></div>
+                </div>
+
                 <div id="menu">
                     <a onclick="showModelos();">
                         MODELOS
@@ -53,10 +57,10 @@
                     <a>
                         AGENCIA
                     </a>
-                    <a>
+                    <a class="no-show-mobile">
                         SERVICIOS
                     </a>
-                    <a>
+                    <a class="no-show-mobile">
                         EVENTOS
                     </a>
                     <a>
@@ -64,6 +68,9 @@
                     </a>
                     <a>
                         CONTACTO
+                    </a>
+                    <a href="https://goo.gl/maps/4qbKGe1AXv62" target="_Blank" class="show-mobile">
+                        UBICACIÓN
                     </a>
                 </div>
             </div>
@@ -81,14 +88,20 @@
                             <f:convertNumber  pattern="#,###.##" />
                         </h:outputText>
                         USD
-                    </div>                    
+                    </div>    
 
-                    <a href="#{facesContext.externalContext.requestContextPath}/model.xhtml?modelid=#{model.id}" style="bottom: 35px;">
-                        &#10097; VER DETALLES
-                    </a>
-                    <a href="#{facesContext.externalContext.requestContextPath}/model.xhtml?modelid=#{model.id}" style="bottom: 0px;">
-                        &#10097; SOLICITA UNA COTIZACIÓN
-                    </a>
+                    <p>
+                        #{model.autos[0].description}
+                    </p>
+
+                    <div style="position: absolute; display: inline-block; left: 0; right: 0; bottom: 0;">
+                        <a href="#{facesContext.externalContext.requestContextPath}/model.xhtml?modelid=#{model.id}" style="bottom: 35px;">
+                            &#10097; VER DETALLES
+                        </a>
+                        <a href="#{facesContext.externalContext.requestContextPath}/model.xhtml?modelid=#{model.id}" style="bottom: 0px;">
+                            &#10097; SOLICITA UNA COTIZACIÓN
+                        </a>
+                    </div>
                 </div>  
             </ui:repeat>                      
         </div>        
@@ -123,7 +136,7 @@
                     <img src="#{facesContext.externalContext.requestContextPath}/templates/landrover/resources/images/icon-ubicacion.jpg" />
                 </span>
                 <li>
-                    <a> UBICACIÓN </a>
+                    <a href="#{facesContext.externalContext.requestContextPath}/ubicacion.xhtml"> UBICACIÓN </a>
                 </li>
             </ul>
         </div>
@@ -142,22 +155,22 @@
                     </b>
                     <div class="break"></div>
 
-                    <a href="#">
+                    <a href="#{facesContext.externalContext.requestContextPath}/model.xhtml?modelid=32">
                         LAND ROVER DISCOVERY SPORT
                     </a>
-                    <a href="#">
+                    <a href="#{facesContext.externalContext.requestContextPath}/model.xhtml?modelid=33">
                         LAND ROVER DISCOVERY
                     </a>
-                    <a href="#">
+                    <a href="#{facesContext.externalContext.requestContextPath}/model.xhtml?modelid=31">
                         LAND ROVER DEFENDER
                     </a>
-                    <a href="#">
+                    <a href="#{facesContext.externalContext.requestContextPath}/model.xhtml?modelid=34">
                         RANGE ROVER EVOQUE
                     </a>
-                    <a href="#">
+                    <a href="#{facesContext.externalContext.requestContextPath}/model.xhtml?modelid=35">
                         RANGE ROVER SPORT
                     </a>
-                    <a href="#">
+                    <a href="#{facesContext.externalContext.requestContextPath}/model.xhtml?modelid=36">
                         RANGE ROVER
                     </a>
                 </div>
@@ -167,19 +180,19 @@
                     </b>
                     <div class="break"></div>
 
-                    <a href="#">
+                    <a href="#{facesContext.externalContext.requestContextPath}/prueba-manejo-auto-generic.xhtml">
                         PRUEBA DE MANEJO
                     </a>
-                    <a href="#">
+                    <a href="#{facesContext.externalContext.requestContextPath}/cotizar-auto-generic.xhtml">
                         COTIZA
                     </a>
-                    <a href="#">
+                    <a href="#{facesContext.externalContext.requestContextPath}/contacto.xhtml">
                         SOLICITA UN CATÁLOGO
                     </a>
-                    <a href="#">
+                    <!--<a href="#">
                         MANTÉNME INFORMADO
-                    </a>
-                    <a href="#">
+                    </a>-->
+                    <a href="#{facesContext.externalContext.requestContextPath}/seminuevos.xhtml">
                         SEMINUEVOS
                     </a>
                 </div>
@@ -194,11 +207,8 @@
         </div>
 
         <div id="page-details">
-            <a href="#">
+            <a href="#{facesContext.externalContext.requestContextPath}/aviso-privacidad.xhtml">
                 POLITICAS DE PRIVACIDAD
-            </a>
-            <a href="#">
-                TÉRMINOS Y CONDICIONES
             </a>
             <a href="#">
                 EVENTOS Y NOTICIAS
