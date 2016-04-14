@@ -1,7 +1,10 @@
 <?xml version='1.0' encoding='UTF-8' ?>
 <!DOCTYPE composition PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <ui:composition xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
-                template="/templates/picacho/picachoTemplate.xhtml">
+                template="/templates/picacho/picachoTemplate.xhtml"
+                xmlns:h="http://xmlns.jcp.org/jsf/html"
+                xmlns:p="http://primefaces.org/ui"
+                xmlns:f="http://xmlns.jcp.org/jsf/core">
 
 
     <ui:define name="titulo">
@@ -62,14 +65,7 @@
                 <li>Tener residencia en México.</li>
             </ul>
 
-
-
-
-
-
         </div>
-
-
 
 
         <div id="quienes-somos-forma" style="background-color: #ececec;" align="center">
@@ -86,16 +82,16 @@
             <div style="background-color: #fff; padding: 10px; width: 300px;">
                 <div align="center">Contacta un Agente</div>
                 <br />
-                <form method="post" action="#{facesContext.externalContext.requestContextPath}/faces/SendMailGeneric" id="forma-contacto">
 
-                    <input type="hidden" name="clave" value="seguros_picacho"/>
-                    <input type="hidden" name="tipo" value="solicitud información seguros"/>
+                <h:form prependId="false">
+                    <p:messages id="messages"/>
                     <table border="0">
                         <tr>
 
                             <td>Nombre:</td>
                             <td>
-                                <input type="text" name="nombre" id="nombre" required="true" />
+                                <h:inputText required="true" requiredMessage="Nombre requerido"
+                                             value="#{solicitudController.solicitud.nombre}"/>
                             </td>
                         </tr>
 
@@ -103,27 +99,74 @@
                         <tr>
                             <td>E-mail:</td>
                             <td>
-                                <input type="text" name="email" id="email" required="true" />
+                                <h:inputText required="true" requiredMessage="Email Requerido"
+                                             validatorMessage="Email Invalido"
+                                             value="#{solicitudController.solicitud.email}"
+                                             styleClass="input-form">
+                                    <f:validateRegex
+                                        pattern="^[_A-Za-z0-9-\+]+(\.[_A-Za-z0-9-]+)*@[A-Za-z0-9-]+(\.[A-Za-z0-9]+)*(\.[A-Za-z]{2,})$" />
+                                </h:inputText>
                             </td>
                         </tr>
 
                         <tr>
                             <td>Teléfono:</td>
                             <td>
-                                <input type="text" name="telefono" id="telefono" required="true" />
+                                <h:inputText required="true" requiredMessage="Teléfono Requerido" styleClass="input-form" value="#{solicitudController.solicitud.telefono}"/> 
                             </td>
                         </tr>
 
                         <tr>
-                            <td>Comentarios:</td>
-                            <td> <textarea name="comentarios" cols="28" rows="3"> </textarea> </td>
+                            <td>Marca:</td>
+                            <td>
+                                <h:selectOneMenu value="#{solicitudController.marca}" converter="MarcaConverter">
+                                    <p:ajax event="change" process="@this" update="panelAgencias"/>
+                                    <f:selectItem itemValue="#{null}" itemLabel="Seleciona una marca"/>
+                                    <f:selectItems value="#{solicitudController.getMarcasGroup(1)}" var="mar"
+                                                   itemValue="#{mar}" itemLabel="#{mar.nombre}"/>
+                                </h:selectOneMenu>
+                            </td>
                         </tr>
 
-                    </table>
-                    <br />
-                    <input id="gobutton" type="submit" value="ENVIAR"/>
 
-                </form>
+                        <tr>
+                            <td>Agencia</td>
+                            <td>
+                                <h:panelGroup id="panelAgencias">
+                                    <h:selectOneMenu required="true" requiredMessage="Por favor selecciona una agencia"
+                                                     value="#{solicitudController.agencia}" converter="AgenciaConverter">
+                                        <p:ajax event="change" process="@this"/>
+                                        <f:selectItem itemValue="#{null}" itemLabel="Seleciona una agencia"/>
+                                        <f:selectItems value="#{solicitudController.agenciasByMarca}" var="age"
+                                                       itemValue="#{age}" itemLabel="#{age.nombre}"/>
+                                    </h:selectOneMenu>
+                                </h:panelGroup>
+                            </td>
+                        </tr>                                          
+
+                        <tr>
+                            <td>Comentarios:</td>
+                            <td>
+                                <h:inputTextarea styleClass="input-form-texarea" value="#{solicitudController.solicitud.comentarios}"/>
+                            </td>
+                        </tr>
+
+                        <tr>
+                            <td>Terminaos y Condiciones</td>
+                            <td>
+                                <h:selectBooleanCheckbox value="#{solicitudController.aceptarTerminosCondiciones}"/>
+                            </td>
+                        </tr>
+
+                        <tr>
+                            <td> &nbsp; </td>
+                            <td align="center"> 
+                                <p:commandLink update="@form" styleClass="boton" action="#{solicitudController.generarSolicitudSeguros(false)}" value="Enviar"/>                                
+                            </td>
+                        </tr>                      
+
+                    </table>
+                </h:form>
 
 
             </div>	

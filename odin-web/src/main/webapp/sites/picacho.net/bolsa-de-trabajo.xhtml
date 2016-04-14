@@ -8,8 +8,31 @@
             <strong> UNETE A NUESTRO EQUIPO </strong>
             <br /> <br />
 
-            <iframe style="border: 0; height: 300px;" src="http://www.picacho.com.mx/views/rh-forma-contacto.php"></iframe>
-
+            <form method="post" action="#{facesContext.externalContext.requestContextPath}/SendGenericMail" enctype="multipart/form-data">
+                
+                <input type="hidden" name="clave" value="bolsa_trabajo_picacho"/>
+                <input type="hidden" name="acerca" value="Bolsa de trabajo"/>
+                <input type="hidden" name="name_agencia" value="#{siteController.agencia.nombre}"/>
+                
+                Nombre <input type="text" name="data_nombre" required="true"/>
+                <br/>
+                
+                Email <input type="email" name="data_email" required="true"/>
+                <br/>
+                
+                Email <input type="tel" name="data_telefono" required="true"/>
+                <br/>                               
+                
+                Curriculum <input type="file" name="files[]" required="true"/>
+                <br/>
+                
+                Comentarios <input type="text" name="data_comentarios" required="true"/>
+                <br/>
+                <br/>
+                
+                <input type="submit" value="Enviar"/>
+                
+            </form>
 
         </div>
 

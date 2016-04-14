@@ -215,6 +215,80 @@ public class SolicitudController implements Serializable {
         }
     }
     
+    public void generarSolicitudRefacciones(boolean forCurrentAgencia) {
+        try {
+            if (aceptarTerminosCondiciones) {
+                if (forCurrentAgencia) {
+                    solicitud.setAgencia(sc.getAgencia());
+                } else{
+                    solicitud.setAgencia(agencia);
+                }
+                solicitud.setTipo(ssb.getTiposolicitudByClave("refacciones"));
+                solicitud.setFecha(new Date());
+
+                StringBuilder sb = new StringBuilder();
+
+                sb.append("<b>Auto: </b>");
+                String name_auto = autoSolicitud.getModelo().getNombre()+" "+autoSolicitud.getNombre()+" "+autoSolicitud.getModelo().getAno();
+                sb.append(name_auto);
+                sb.append(" ");
+                sb.append(autoSolicitud.getModelo().getAno());
+                sb.append("<br/>");
+
+                solicitud.setDescripcionSolicitud(sb.toString());
+
+                List<Correo> lm = ssb.crearSolicitud(solicitud);
+
+                for (Correo m : lm) {
+                    sendJMSMessageToMensajesQueue(m);
+                }
+                clearInfoSolicitud();
+                FacesContext.getCurrentInstance().addMessage("", new FacesMessage(FacesMessage.SEVERITY_INFO, "¡ Gracias por tu información ! Nos pondremos en contacto.", null));
+            } else {
+                FacesContext.getCurrentInstance().addMessage("", new FacesMessage(FacesMessage.SEVERITY_WARN, "Debes aceptar los terminos y condiciones", null));
+            }
+        } catch (Exception e) {
+            Logger.getLogger(this.getClass().getName()).log(Level.SEVERE, "Error al generar la solicitud de cotizacion", e);
+        }
+    }
+    
+    public void generarSolicitudSeguros(boolean forCurrentAgencia) {
+        try {
+            if (aceptarTerminosCondiciones) {
+                if (forCurrentAgencia) {
+                    solicitud.setAgencia(sc.getAgencia());
+                } else{
+                    solicitud.setAgencia(agencia);
+                }
+                solicitud.setTipo(ssb.getTiposolicitudByClave("seguros"));
+                solicitud.setFecha(new Date());
+
+                StringBuilder sb = new StringBuilder();
+
+                sb.append("<b>Auto: </b>");
+                String name_auto = autoSolicitud.getModelo().getNombre()+" "+autoSolicitud.getNombre()+" "+autoSolicitud.getModelo().getAno();
+                sb.append(name_auto);
+                sb.append(" ");
+                sb.append(autoSolicitud.getModelo().getAno());
+                sb.append("<br/>");
+
+                solicitud.setDescripcionSolicitud(sb.toString());
+
+                List<Correo> lm = ssb.crearSolicitud(solicitud);
+
+                for (Correo m : lm) {
+                    sendJMSMessageToMensajesQueue(m);
+                }
+                clearInfoSolicitud();
+                FacesContext.getCurrentInstance().addMessage("", new FacesMessage(FacesMessage.SEVERITY_INFO, "¡ Gracias por tu información ! Nos pondremos en contacto.", null));
+            } else {
+                FacesContext.getCurrentInstance().addMessage("", new FacesMessage(FacesMessage.SEVERITY_WARN, "Debes aceptar los terminos y condiciones", null));
+            }
+        } catch (Exception e) {
+            Logger.getLogger(this.getClass().getName()).log(Level.SEVERE, "Error al generar la solicitud de cotizacion", e);
+        }
+    }
+    
     public void generarSolicitudContactoGeneral(boolean forCurrentAgencia) {
         try {
             if (aceptarTerminosCondiciones) {
@@ -251,6 +325,7 @@ public class SolicitudController implements Serializable {
         autoSolicitud = new Auto();
         servicioValet = false;
         aceptarTerminosCondiciones = false;
+        marca = new Marca();
         agencia = new Agencia();
     }             
     

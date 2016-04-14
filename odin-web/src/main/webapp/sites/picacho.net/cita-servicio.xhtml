@@ -1,7 +1,10 @@
 <?xml version='1.0' encoding='UTF-8' ?>
 <!DOCTYPE composition PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <ui:composition xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
-                template="/templates/picacho/picachoTemplate.xhtml">
+                template="/templates/picacho/picachoTemplate.xhtml"
+                xmlns:h="http://xmlns.jcp.org/jsf/html"
+                xmlns:p="http://primefaces.org/ui"
+                xmlns:f="http://xmlns.jcp.org/jsf/core">
 
     <ui:define name="headers">
         <link rel="stylesheet" href="//code.jquery.com/ui/1.11.4/themes/smoothness/jquery-ui.css"/>
@@ -23,16 +26,16 @@
                 <span>Ingrese la información solicitada.</span>
                 <br />
                 <br />
-                <form method="post" action="#{facesContext.externalContext.requestContextPath}/faces/SendMailGeneric" >
 
-                    <input type="hidden" name="clave" value="servicio_picacho"/>
-                    <input type="hidden" name="tipo" value="Cita Servicio"/>
+                <h:form prependId="false">
+                    <p:messages id="messages"/>
                     <table border="0">
                         <tr>
 
                             <td>Nombre:</td>
                             <td>
-                                <input type="text" name="nombre" id="nombre" size="30" />
+                                <h:inputText required="true" requiredMessage="Nombre requerido"
+                                             value="#{solicitudController.solicitud.nombre}"/>
                             </td>
                         </tr>
 
@@ -40,60 +43,123 @@
                         <tr>
                             <td>E-mail:</td>
                             <td>
-                                <input type="text" name="email" id="email" size="30" />
+                                <h:inputText required="true" requiredMessage="Email Requerido"
+                                             validatorMessage="Email Invalido"
+                                             value="#{solicitudController.solicitud.email}"
+                                             styleClass="input-form">
+                                    <f:validateRegex
+                                        pattern="^[_A-Za-z0-9-\+]+(\.[_A-Za-z0-9-]+)*@[A-Za-z0-9-]+(\.[A-Za-z0-9]+)*(\.[A-Za-z]{2,})$" />
+                                </h:inputText>
                             </td>
                         </tr>
 
                         <tr>
                             <td>Teléfono:</td>
                             <td>
-                                <input type="text" name="telefono" id="telefono" size="30" />
+                                <h:inputText required="true" requiredMessage="Teléfono Requerido" styleClass="input-form" value="#{solicitudController.solicitud.telefono}"/> 
                             </td>
                         </tr>
 
                         <tr>
-                            <td>Agencia:</td>
+                            <td>Marca:</td>
                             <td>
-                                <input type="text" name="agencia" id="agencia" size="30" />
+                                <h:selectOneMenu value="#{solicitudController.marca}" converter="MarcaConverter">
+                                    <p:ajax event="change" process="@this" update="panelAgencias"/>
+                                    <f:selectItem itemValue="#{null}" itemLabel="Seleciona una marca"/>
+                                    <f:selectItems value="#{solicitudController.getMarcasGroup(1)}" var="mar"
+                                                   itemValue="#{mar}" itemLabel="#{mar.nombre}"/>
+                                </h:selectOneMenu>
                             </td>
                         </tr>
 
+
+                        <tr>
+                            <td>Agencia</td>
+                            <td>
+                                <h:panelGroup id="panelAgencias">
+                                    <h:selectOneMenu required="true" requiredMessage="Por favor selecciona una agencia"
+                                                     value="#{solicitudController.agencia}" converter="AgenciaConverter">
+                                        <p:ajax event="change" process="@this" update="panelModelos"/>
+                                        <f:selectItem itemValue="#{null}" itemLabel="Seleciona una agencia"/>
+                                        <f:selectItems value="#{solicitudController.agenciasByMarca}" var="age"
+                                                       itemValue="#{age}" itemLabel="#{age.nombre}"/>
+                                    </h:selectOneMenu>
+                                </h:panelGroup>
+                            </td>
+                        </tr>
 
                         <tr>
                             <td>Modelo</td>
                             <td>
-                                <input type="text" name="modelo" id="modelo" size="30" />
+                                <h:panelGroup id="panelModelos">
+                                    <h:selectOneMenu value="#{solicitudController.modelo}" converter="ModeloConverter">
+                                        <p:ajax event="change" process="@this" update="panelAutos"/>
+                                        <f:selectItem itemValue="#{null}" itemLabel="Seleciona un modelo"/>
+                                        <f:selectItems value="#{solicitudController.modelosByMarca}" var="model"
+                                                       itemValue="#{model}" itemLabel="#{model.nombre} #{model.ano}"/>
+                                    </h:selectOneMenu>
+                                </h:panelGroup>
                             </td>
                         </tr>
 
                         <tr>
-                            <td>Fecha</td>
+                            <td>Auto</td>
                             <td>
-                                <input type="text" name="fecha" id="fecha" required="true" />
+                                <h:panelGroup id="panelAutos">
+                                    <h:selectOneMenu required="true" requiredMessage="Por favor selecciona un auto"
+                                                     value="#{solicitudController.autoSolicitud}" converter="AutoConverter">
+                                        <f:selectItem itemValue="#{null}" itemLabel="Seleciona un auto"/>
+                                        <f:selectItems value="#{solicitudController.autosByModel}" var="a"
+                                                       itemValue="#{a}" itemLabel="#{a.nombre}"/>
+                                    </h:selectOneMenu>
+                                </h:panelGroup>
                             </td>
                         </tr>
 
+                        <tr>
+                            <td>Fecha y Hora</td>
+                            <td>
+                                <p:calendar locale="es" mindate="#{solicitudController.today}" value="#{solicitudController.fechaCita}" pattern="dd-MM-yyyy HH:mm" mask="true" />
+                            </td>
+                        </tr>
 
                         <tr>
                             <td>Comentarios:</td>
-                            <td> <textarea name="comentarios" cols="25" rows="3"> </textarea> </td>
+                            <td>
+                                <h:inputTextarea styleClass="input-form-texarea" value="#{solicitudController.solicitud.comentarios}"/>
+                            </td>
+                        </tr>
+                        
+                        <tr>
+                            <td>No. Placas</td>
+                            <td>
+                                <h:inputText value="#{solicitudController.placas}" required="true" requiredMessage="No. Placas Requerido"/>
+                            </td>
+                        </tr>
+                        
+                        <tr>
+                            <td>Valet Parking</td>
+                            <td>
+                                <h:selectBooleanCheckbox value="#{solicitudController.servicioValet}"/>
+                            </td>
+                        </tr>
+
+                        <tr>
+                            <td>Terminaos y Condiciones</td>
+                            <td>
+                                <h:selectBooleanCheckbox value="#{solicitudController.aceptarTerminosCondiciones}"/>
+                            </td>
                         </tr>
 
                         <tr>
                             <td> &nbsp; </td>
-                            <td align="center"> <br />
-                                <input id="gobutton" type="submit" value="ENVIAR" /></td>
+                            <td align="center"> 
+                                <p:commandLink update="@form" styleClass="boton" action="#{solicitudController.generarSolicitudCitaServicio(true, true, false)}" value="Enviar"/>                                
+                            </td>
                         </tr>                      
 
                     </table>
-
-                    <script>
-                        $(function () {
-                            $("#fecha").datepicker({dateFormat: 'dd-mm-yy'});
-                        });
-                    </script>
-
-                </form>
+                </h:form>         
 
 
             </div>	
@@ -103,8 +169,8 @@
 
         <div id="quienes-somos-forma" style="background-color: #ececec;" align="center">
 
-            <div style="background-color: fff; padding: 10px; width: 300px; height: 65px; border-style: solid; border-color: red;">
-                <span>	CONTACTANOS</span>
+            <div style="background-color: #fff; padding: 10px; width: 300px; height: 65px; border-style: solid; border-color: red;">
+                <span>	CONTÁCTANOS</span>
                 <br /> <br />
                 Cita Servicio: &nbsp; &nbsp;&nbsp; &nbsp;   (55) 54841 6500 	
             </div>	
@@ -116,6 +182,35 @@
 
         <div class="break"></div>
 
+        <script>
+            PrimeFaces.locales['es'] = {
+                closeText: 'Cerrar',
+                prevText: 'Anterior',
+                nextText: 'Siguiente',
+                monthNames: ['Enero', 'Febrero', 'Marzo', 'Abril', 'Mayo', 'Junio', 'Julio', 'Agosto', 'Septiembre', 'Octubre', 'Noviembre', 'Diciembre'],
+                monthNamesShort: ['Ene', 'Feb', 'Mar', 'Abr', 'May', 'Jun', 'Jul', 'Ago', 'Sep', 'Oct', 'Nov', 'Dic'],
+                dayNames: ['Domingo', 'Lunes', 'Martes', 'Miércoles', 'Jueves', 'Viernes', 'Sábado'],
+                dayNamesShort: ['Dom', 'Lun', 'Mar', 'Mie', 'Jue', 'Vie', 'Sab'],
+                dayNamesMin: ['D', 'L', 'M', 'M', 'J', 'V', 'S'],
+                weekHeader: 'Semana',
+                firstDay: 1,
+                isRTL: false,
+                showMonthAfterYear: false,
+                yearSuffix: '',
+                timeOnlyTitle: 'Sólo hora',
+                timeText: 'Tiempo',
+                hourText: 'Hora',
+                minuteText: 'Minuto',
+                secondText: 'Segundo',
+                currentText: 'Fecha actual',
+                ampm: false,
+                month: 'Mes',
+                week: 'Semana',
+                day: 'Día',
+                allDayText: 'Todo el día'
+            };
+        </script>
+        
     </ui:define>
 
 </ui:composition>
