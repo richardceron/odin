@@ -40,11 +40,13 @@ public class UserSessionBean implements Serializable {
         }
     }
     
-    public void actualizarUsuarioSesion(Usuario u){
+    public Usuario actualizarUsuarioSesion(Usuario u){
         try {
-            em.merge(u);
+            u = em.merge(u);
+            return u;
         } catch (Exception e) {
             Logger.getLogger(this.getClass().getName()).log(Level.SEVERE, "Error al actualziar el usuario en sesión", e);
+            return null;
         }
     }
 
