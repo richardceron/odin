@@ -2,7 +2,33 @@
 <!DOCTYPE urlrewrite PUBLIC "-//tuckey.org//DTD UrlRewrite 3.2//EN"
         "http://tuckey.org/res/dtds/urlrewrite3.2.dtd">
 
-<urlrewrite>	 	    
+<urlrewrite>	 	            
+    
+    <rule enabled="true">
+        <from>^/faces/sites/mazda\.picacho\.net/(.*)</from>
+        <to last="true">/faces/sites/%{server-name}/$1</to>
+    </rule>
+    
+    <rule enabled="true">
+        <from>^/faces/sites/www\.baicpicacho\.com\.mx/(.*)</from>
+        <to last="true">/faces/sites/%{server-name}/$1</to>
+    </rule>
+    
+    <rule enabled="true">
+        <from>^/faces/sites/jaguar\.picacho\.com\.mx/(.*)</from>
+        <to last="true">/faces/sites/%{server-name}/$1</to>
+    </rule>
+    
+    <rule enabled="true">
+        <from>^/faces/sites/www\.jaguar\.picacho\.com\.mx/(.*)</from>
+        <to last="true">/faces/sites/%{server-name}/$1</to>
+    </rule> 
+    
+    <rule enabled="true">
+        <from>^/faces/sites/www\.landrover-pedregal\.com/(.*)</from>
+        <to last="true">/faces/sites/%{server-name}/$1</to>
+    </rule> 
+    
     
     <rule enabled="true">
         <from>^/faces/sites/landrover-pedregal\.com/(.*)</from>
@@ -13,6 +39,7 @@
         <from>^/faces/sites/www\.landrover-pedregal\.com/(.*)</from>
         <to last="true">/faces/sites/%{server-name}/$1</to>
     </rule> 
+        
     
     <rule enabled="true">
         <from>^/faces/sites/picacho\.net/(.*)</from>
@@ -23,13 +50,35 @@
         <from>^/faces/sites/www\.picacho\.net/(.*)</from>
         <to last="true">/faces/sites/%{server-name}/$1</to>
     </rule> 
-    
+                   
     <rule enabled="true">
         <from>^/$</from>
-        <to>/index.xhtml</to>
-    </rule>	        
+        <to type="redirect">/index.xhtml</to>
+    </rule>	  
+    
+    <!-- todo lo que lleve dominio.com/cosas/ -->      
     
     <rule>
+		<from>^/direccion$</from>
+		<to>/direccion/index.xhtml</to>
+	</rule>
+	
+	<rule>
+		<from>^/compras$</from>
+		<to>/compras/index.xhtml</to>
+	</rule> 
+	
+	<rule>
+		<from>^/proveedores$</from>
+		<to>/proveedores/index.xhtml</to>
+	</rule>
+	
+	<rule>
+		<from>^/jefedepto$</from>
+		<to>/jefedepto/index.xhtml</to>
+	</rule> 
+    
+    <rule enabled="true">
         <from>^/(.*)xhtml$</from>
         <to>/faces/sites/%{server-name}/$1xhtml</to>
     </rule>                         	
